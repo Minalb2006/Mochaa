@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Conditional Statements</title>
+    <link rel="stylesheet" href="./Datatype.css">
+</head>
+
+<body>
+
+    <h1>Variable Of Datatype</h1>
+
+    <div class="section">
+        <h2>* String</h2>
+        <p>• A string in JavaScript is a sequence of characters used to represent text.</p>
+<p>• It is written inside single quotes (' '), double quotes (" "), or backticks ( ).</p>
+        <pre>
+<b>Example:</b>
+let firstName = "Paurnima";
+let lastName = "Bawane";
+let fullName = firstName + " " + lastName;
+console.log(fullName);
+
+<b>Output:</b>
+Paurnima Bawane
+</pre>
+</div>
+
+    <div class="section">
+        <h2>* Number</h2>
+        <p>• A Number in JavaScript is a data type used to represent numeric values, whether integer or decimal (floating-point).</p>
+ <p>• It is used for performing mathematical calculations like addition, subtraction, multiplication, etc.</p>
+      <pre>
+<b>Example:</b>
+let price = 99.99;
+console.log(price);
+
+<b>Output:</b>
+99.99
+    </pre>
+    </div>
+
+    <div class="section">
+        <h2>* Bigint</h2>
+        <p>• A BigInt in JavaScript is a special numeric data type used to represent very large integers that cannot be handled by the regular Number type.</p>
+        <pre>
+<b>Example:</b>
+let num = 20;
+let bigNum = 50n;
+let total = BigInt(num) + bigNum;
+console.log(total);
+
+<b>Output:</b>
+70n
+    </pre>
+    </div>
+
+    <div class="section">
+        <h2>* Boolean</h2>
+        <p>• A Boolean in JavaScript is a data type that can have only two values — true or false.</p>
+<p>• It is mainly used for decision-making and conditional statements (like if, else).</p>
+        <pre>
+<b>Example:</b>
+let isLoggedIn = true;
+
+if (isLoggedIn) {
+  console.log("Welcome, user!");
+} else {
+  console.log("Please log in.");
+}
+
+<b>Output:</b>
+Welcome, user!
+    </pre>
+    </div>
+
+    <div class="section">
+        <h2>* Undefined</h2>
+        <p>• Undefined is a primitive data type in JavaScript.</p>
+<p>• It means a variable has been declared but no value has been assigned to it yet.</p>
+        <pre>
+<b>Example:</b>
+let city = undefined;
+console.log(city);
+
+<b>Output:</b>
+undefined
+    </pre>
+    </div>
+
+    <div class="section">
+        <h2>* Object</h2>
+        <p>An Object in JavaScript is a non-primitive data type used to store multiple values in the form of key–value pairs.</p>
+        <pre>
+<b>Example:</b>
+let student = {
+  name: "Riya",
+  rollNo: 45,
+  subjects: ["Math", "English", "Science"],
+  isPassed: true
+};
+console.log(student);
+
+<b>Output:</b>
+{
+  name: "Riya",
+  rollNo: 45,
+  subjects: ["Math", "English", "Science"],
+  isPassed: true
+}
+    </pre>
+    </div>
+
+ <h1></h1>
+
+    <div class="section">
+        <h2>* Null</h2>
+        <p>• Null is a primitive data type in JavaScript that represents an intentional absence of any value.</p>
+<p>• It means the variable is empty or has no value assigned on purpose. </p>
+        <pre>
+<b>Example:</b>
+let data = null;
+console.log(data);
+
+<b>Output:</b>
+null
+</pre>
+</div>
+
+    <div class="section">
+        <h2>* Symbol </h2>
+        <p>• A Symbol is a primitive data type in JavaScript that is used to create unique and immutable identifiers (values that are guaranteed to be different from any other). </p>
+ <p>• Symbols are often used as object property keys to avoid naming conflicts — because every Symbol is completely unique, even if they have the same description.</p>
+      <pre>
+<b>Example:</b>
+let a = Symbol("user");
+let b = Symbol("user");
+console.log(a === b);
+
+<b>Output:</b>
+False
+    </pre>
+    </div>
+
+</body>
+
+</html>
