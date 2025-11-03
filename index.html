@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
+    <!-- Added viewport for responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Definitive Journey of JavaScript</title>
     <style>
       
@@ -15,6 +17,55 @@
             color: #333;
             line-height: 1.6;
         }
+
+        /* --- NEW: Navigation Bar --- */
+        .navbar {
+            background: #ffffff;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eef;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap; /* Allows links to wrap on small screens */
+            justify-content: center; /* Centers the links */
+        }
+
+        .navbar li {
+            margin: 5px 8px; /* Spacing for each link */
+        }
+
+        .navbar a {
+            /* Using a similar font to your h3 for a clean look */
+            font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+            color: #d9534f; /* The "orange wala" color */
+            font-weight: 600;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.2s ease-in-out;
+            display: inline-block;
+        }
+
+        .navbar a:hover {
+            background-color: #f7f7f7;
+            color: #007acc; /* The blue from h2 */
+        }
+        
+        /* This style is for the current, active page */
+        .navbar a.active {
+            background-color: #d9534f; /* Active link has the orange color as background */
+            color: #ffffff; /* White text */
+        }
+
+        /* --- End of Nav Bar --- */
+
 
         h1 {
             text-align: center;
@@ -80,10 +131,39 @@
             margin-bottom: 5px;
         }
 
+        /* --- Responsiveness for Nav --- */
+        @media (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column; /* Stack links vertically */
+                align-items: stretch; /* Make links full-width */
+            }
+            .navbar li {
+                margin: 4px 0; /* Adjust margin for vertical layout */
+                text-align: center;
+            }
+        }
+
     </style>
 </head>
 
 <body>
+
+    <!-- Added Navigation Bar -->
+    <nav class="navbar">
+        <ul>
+            <!-- Added 'active' class to the current page link -->
+            <li><a href="index.html" class="active">Introduction</a></li>
+            <!-- I've used hyphens for filenames with spaces, as this is better for web URLs -->
+            <li><a href="loop-statement.html">Loop Statement</a></li>
+            <li><a href="conditional.html">Conditional</a></li>
+            <li><a href="functional.html">Functional</a></li>
+            <li><a href="object.html">Object</a></li>
+            <li><a href="number.html">Number</a></li>
+            <li><a href="operator.html">Operator</a></li>
+            <li><a href="string.html">String</a></li>
+            <li><a href="variable.html">Variable</a></li>
+        </ul>
+    </nav>
 
     <h1>The Definitive Journey of JavaScript</h1>
 
@@ -102,7 +182,8 @@
     <div class="section">
         <h2>3. A Tale of Three Names: Mocha, LiveScript, JavaScript</h2>
         <p>The language's creation was so fast, its name changed several times.</p>
-        <ul>
+        <!-- Using the original <ul> styling -->
+        <ul style="padding-left: 20px;">
             <li><strong>Mocha:</strong> This was the original internal codename chosen by Eich. It had no deep technical meaning, but "coffee-themed" names were trendy in tech at the time (e.g., "Java").</li>
             <li><strong>LiveScript:</strong> When the language first shipped in a beta version of Netscape Navigator 2.0, it was renamed "LiveScript."</li>
             <li><strong>JavaScript:</strong> This was the final, and most confusing, name. In late 1995, Netscape formed a marketing alliance with Sun Microsystems, the creators of the <strong>Java</strong> programming language. Java was the hottest new technology. To capitalize on this hype, Netscape renamed LiveScript to "JavaScript."</li>
@@ -172,7 +253,8 @@ Object.entries()
     <div class="section">
         <h2>7. The Legacy: JavaScript Everywhere</h2>
         <p>From its humble 10-day beginning as a simple browser toy, JavaScript has grown into a global powerhouse. Thanks to <strong>Node.js</strong>, it's no longer confined to the browser. Today, JavaScript is used to build:</p>
-        <ul>
+        <!-- Using the original <ul> styling -->
+        <ul style="padding-left: 20px;">
             <li><strong>Frontend Web Apps:</strong> (React, Angular, Vue)</li>
             <li><strong>Backend Servers:</strong> (Node.js, Express)</li>
             <li><strong>Mobile Apps:</strong> (React Native, NativeScript)</li>
@@ -183,3 +265,4 @@ Object.entries()
 
 </body>
 </html>
+
