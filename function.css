@@ -22,15 +22,9 @@ h2 {
   color: #007acc;
 }
 
-h3{
-  color: #1c1c1c;
-  font-family:'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
-}
-
 pre {
   background: #eee;
   padding: 10px;
   border-radius: 5px;
   overflow: auto;
 }
-

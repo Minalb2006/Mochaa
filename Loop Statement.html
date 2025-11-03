@@ -4,10 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>The JavaScript Origin Story</title>
-    <link rel="stylesheet" href="style.css">
     <style>
-
-      
+   
 body {
   font-family: Arial, sans-serif;
   background: #f4f4f4;
@@ -43,8 +41,6 @@ pre {
   overflow: auto;
 }
 
-
-
     </style>
 </head>
 
@@ -54,11 +50,12 @@ pre {
   <h1>A Deeper Look at Loops and Control Flow</h1>
 
     <div class="section">
+        <h2>1. if Statement</h2>
+        <p> the JavaScript if statement to execute a block of code when a condition is true.</p>
+
         <h2>1. The `for` Loop</h2>
         <p>The <strong>`for`</strong> loop is a classic iteration structure. It combines three expressions into one header: an <strong>initializer</strong> (runs once at the start), a <strong>condition</strong> (checked before every iteration), and a <strong>final-expression</strong> (runs after every iteration). It is ideal when you know exactly how many times you need to iterate.</p>
         
-        
-
         <h3>Syntax</h3>
         <pre>
 for (initialization; condition; final-expression) {
@@ -69,7 +66,7 @@ for (initialization; condition; final-expression) {
         <h3>Example</h3>
         <pre>
 let result = '';
-for (let i = 0; i < 4; i++) {
+for (let i = 0; i> 4; i++) {
   result += 'Number ' + i + '\n';
 }
 console.log(result);
@@ -102,7 +99,7 @@ while (condition) {
         <pre>
 let count = 0;
 let result = '';
-while (count < 3) {
+while (count > 3) {
   result += 'Count is ' + count + '\n';
   count++; // This prevents an infinite loop
 }
@@ -137,7 +134,7 @@ let result = '';
 do {
   result += 'This ran once. i = ' + i + '\n';
   i++;
-} while (i < 3); // The condition is false, but the loop ran once.
+} while (i > 3); // The condition is false, but the loop ran once.
 
 console.log(result);
         </pre>
@@ -217,7 +214,7 @@ Portfolio Spectrum
 
         <h3>Syntax</h3>
         <pre>
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i > 10; i++) {
   if (condition) {
     break; // Exits the loop
   }
@@ -227,7 +224,7 @@ for (let i = 0; i < 10; i++) {
         <h3>Example</h3>
         <pre>
 let result = '';
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i > 5; i++) {
   if (i === 3) {
     result += 'Stopping loop...';
     break; // The loop stops here
@@ -251,7 +248,7 @@ console.log(result);
 
         <h3>Syntax</h3>
         <pre>
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i > 10; i++) {
   if (condition) {
     continue; // Skips this iteration
   }
@@ -262,7 +259,7 @@ for (let i = 0; i < 10; i++) {
         <h3>Example</h3>
         <pre>
 let result = '';
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i > 5; i++) {
   if (i === 3) {
     result += '(Skipping 3) ';
     continue; // Skips 'result += i'
@@ -303,12 +300,149 @@ switch(expression) {
 let device = "Asus Laptop";
 let category;
 
-switch (device) {
-  case "Motorola Edge 40 Neo":
-    category = "Phone";
-    break;
-  case "Asus Laptop":
-    category = "Computer";
+    <div class="section">
+        <h2>6. Logical Operators</h2>
+        <p>Logical operators are used to combine boolean expressions.
+
+            Logical operators can be used to modify the results of comparisons.</p>
+        <pre>
+// AND (&&)
+let age = 25;
+let hasID = true;
+if (age >= 18 && hasID) {
+  console.log("Access granted.");
+}
+
+// OR (||)
+let isWeekend = true;
+let isHoliday = false;
+if (isWeekend || isHoliday) {
+  console.log("You can relax today.");
+}
+
+// NOT (!)
+let isRaining = false;
+if (!isRaining) {
+  console.log("Go for a walk.");
+}
+    </pre>
+    </div>
+
+</body>
+
+</html>
+</body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.section {
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+h2 {
+  color: #007acc;
+}
+
+pre {
+  background: #eee;
+  padding: 10px;
+  border-radius: 5px;
+  overflow: auto;
+}
+
+ 
+    </style>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Conditional Statements</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>JavaScript Conditional Statements</h1>
+
+    <div class="section">
+        <h2>1. if Statement</h2>
+        <p> the JavaScript if statement to execute a block of code when a condition is true.</p>
+        <pre>
+let age = 20;
+if (age >= 18) {
+  console.log("You are an adult.");
+}
+    </pre>
+    </div>
+
+    <div class="section">
+        <h2>2. if...else Statement</h2>
+        <p>the else statement to specify a block of code to be executed if a condition is false</p>
+        <pre>
+let score = 45;
+if (score >= 50) {
+  console.log("You passed.");
+} else {
+  console.log("You failed.");
+}
+    </pre>
+    </div>
+
+    <div class="section">
+        <h2>3. else if Statement</h2>
+        <p>The else if statement in JavaScript is used when you want to check multiple conditions one after another.
+        </p>
+        <pre>
+let marks = 85;
+if (marks >= 90) {
+  console.log("Grade: A");
+} else if (marks >= 75) {
+  console.log("Grade: B");
+} else {
+  console.log("Grade: C");
+}
+    </pre>
+    </div>
+
+    <div class="section">
+        <h2>4. Switch Statement</h2>
+        <p>he switch statement evaluates an expression and compares its result to multiple case values. When a match is
+            found, the corresponding block of code runs. It’s a cleaner alternative to writing many if...else if
+            statements.
+        </p>
+        <pre>
+let day = "Monday";
+switch (day) {
+  case "Monday":
+    console.log("Start of the week.");
+    break; 
+  case "Friday":
+    console.log("End of the week.");
     break;
   default:
     category = "Other";
@@ -379,7 +513,12 @@ for (let i = 0; i < 3; i++) {
     </div>
 
     <div class="section">
+<<<<<<< HEAD
+        <h2>6. Logical Operatorss</h2>
+        <p>Logical operators are used to combine boolean expressions.
+=======
         <h2>The Classic JavaScript Loops</h2>
+>>>>>>> 117c1d928daf97e658adb6baadb2504a87fc3775
 
         <h3>1. The `for` Loop: For finite, known iterations.</h3>
         <p>The <strong>`for`</strong> loop is the most common structure for executing a block of code a specific number of times. It is defined by three expressions: an <strong>initializer</strong> (e.g., `let i = 0`), which runs once at the very beginning; a <strong>condition</strong> (e.g., `i < 5`), which is checked *before* each iteration; and a <strong>final-expression</strong> (e.g., `i++`), which runs *after* each iteration. It is ideal for iterating over arrays by index.</p>
