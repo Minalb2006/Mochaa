@@ -16,7 +16,7 @@
         const mouse = { x: 0, y: 0 };
         
         // Character State
-        const girl = {
+        const girl = { 
             x: 0,
             y: 0,
             targetY: 0,
@@ -26,7 +26,7 @@
             isHappy: false,
             happyTimer: 0,
             hairAngle: 0
-        };
+        }; 
 
         // Stars for background
         const stars = [];
