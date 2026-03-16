@@ -33,6 +33,11 @@ Welcome to **Mocha** - my collection of creative web development projects and ex
 
 | Project | Description | Technologies |
 |---------|-------------|--------------|
+| [AI Drawing Canvas](AI%20Drawing%20Canvas/index.html) | AI-powered drawing canvas with real-time style transfer | Canvas API, TensorFlow.js, Image Processing |
+| [3D Solar System](3D%20Solar%20System/index.html) | Interactive 3D solar system with realistic planetary orbits | Three.js, WebGL, NASA APIs |
+| [Voice Music Visualizer](Voice%20Music%20Visualizer/index.html) | Voice-controlled music visualizer with real-time audio analysis | Web Audio API, Speech Recognition, Canvas |
+| [Collaborative Whiteboard](Collaborative%20Whiteboard/index.html) | Real-time collaborative whiteboard with multi-user support | WebRTC, Canvas, Socket.io |
+| [Quantum Computing Simulator](Quantum%20Computing%20Simulator/index.html) | Interactive quantum circuit builder with simulation | JavaScript, Quantum Computing, Complex Numbers |
 | [Bubble Game](Bubble%20Game/index.html) | Interactive bubble popping game with physics | HTML5, CSS3, JavaScript |
 | [City Map](City%20Map/City%20Map.html) | Interactive city map visualization | JavaScript, CSS Animations |
 | [Geometry Dance](Geometry%20Dance/Colour.html) | Geometric shapes dancing in patterns | SVG, CSS Animations |
@@ -80,6 +85,36 @@ Welcome to **Mocha** - my collection of creative web development projects and ex
 - **Responsive Layout**: Works perfectly on desktop and mobile devices
 - **Professional Icons**: Custom SVG icons for each project
 - **Featured Projects**: Highlighted showcase for main projects
+- **Interactive Elements**: Hover effects, transitions, and micro-interactions
+- **Modern Gradients**: Beautiful color gradients for visual appeal
+- **Dark/Light Themes**: Optimized for comfortable viewing
+
+### 🌟 New Advanced Projects
+
+**🤖 AI-Powered Drawing Canvas**
+- Real-time style transfer using advanced algorithms
+- Apply Van Gogh, Picasso, Monet, and other artistic styles
+- Interactive drawing tools with multiple brushes and effects
+
+**🌌 3D Solar System**
+- Interactive planetary visualization with Three.js
+- Real astronomical data and orbital mechanics
+- Zoom, rotate, and explore the solar system in 3D
+
+**🎵 Voice Music Visualizer**
+- Voice-controlled visualizations using speech recognition
+- Real-time audio analysis and frequency visualization
+- Multiple visualization modes and effects
+
+**🎨 Collaborative Whiteboard**
+- Real-time multi-user drawing and collaboration
+- Live cursor tracking and user presence
+- Share and collaborate on drawings in real-time
+
+**⚛️ Quantum Computing Simulator**
+- Interactive quantum circuit builder
+- Real-time quantum state simulation
+- Bloch sphere visualization and quantum gates
 
 ### 📱 Live Demo
 

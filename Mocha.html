@@ -87,6 +87,61 @@
             background: #f3f4f6;
         }
 
+        /* AI Drawing Canvas */
+        .project-card.ai-drawing {
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+            border-color: #a5d6a7;
+        }
+
+        .project-card.ai-drawing .project-icon {
+            background: #4caf50;
+            color: white;
+        }
+
+        /* 3D Solar System */
+        .project-card.solar-system {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-color: #90caf9;
+        }
+
+        .project-card.solar-system .project-icon {
+            background: #2196f3;
+            color: white;
+        }
+
+        /* Voice Music Visualizer */
+        .project-card.music-visualizer {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-color: #ce93d8;
+        }
+
+        .project-card.music-visualizer .project-icon {
+            background: #9c27b0;
+            color: white;
+        }
+
+        /* Collaborative Whiteboard */
+        .project-card.whiteboard {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-color: #ffb74d;
+        }
+
+        .project-card.whiteboard .project-icon {
+            background: #ff9800;
+            color: white;
+        }
+
+        /* Quantum Computing Simulator */
+        .project-card.quantum-simulator {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            border-color: #f48fb1;
+        }
+
+        .project-card.quantum-simulator .project-icon {
+            background: #e91e63;
+            color: white;
+        }
+
         /* Bubble Game */
         .project-card.bubble-game {
             background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
@@ -342,6 +397,41 @@
                 description: "Main webpage with comprehensive web development concepts and tutorials. Learn JavaScript, HTML, CSS, and modern web development through interactive examples.",
                 path: "Mocha Webpage/index.html",
                 featured: true
+            },
+            {
+                name: "AI Drawing Canvas",
+                icon: '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.19 0 2.34-.21 3.41-.6.3-.11.49-.4.49-.72 0-.43-.35-.78-.78-.78-.17 0-.33.06-.46.11-.91.33-1.78.49-2.66.49-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7c0 .88-.16 1.75-.49 2.66-.05.13-.11.29-.11.46 0 .43.35.78.78.78.32 0 .61-.19.72-.49.39-1.07.6-2.22.6-3.41 0-5.52-4.48-10-10-10zm0 2.5c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5 3.5-1.57 3.5-3.5-1.57-3.5-3.5-3.5z"/></svg>',
+                description: "AI-powered drawing canvas with real-time style transfer. Apply Van Gogh, Picasso, Monet styles to your artwork using advanced algorithms.",
+                path: "AI Drawing Canvas/index.html",
+                class: "ai-drawing"
+            },
+            {
+                name: "3D Solar System",
+                icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="12" cy="12" r="12" fill="none" stroke="currentColor" stroke-width="0.5"/><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="0.5"/></svg>',
+                description: "Interactive 3D solar system with realistic planetary orbits, zoom controls, and detailed astronomical information.",
+                path: "3D Solar System/index.html",
+                class: "solar-system"
+            },
+            {
+                name: "Voice Music Visualizer",
+                icon: '<svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/><rect x="2" y="18" width="20" height="2" rx="1"/><rect x="2" y="14" width="20" height="2" rx="1"/><rect x="2" y="10" width="20" height="2" rx="1"/></svg>',
+                description: "Voice-controlled music visualizer with real-time audio analysis. Control visualizations with voice commands.",
+                path: "Voice Music Visualizer/index.html",
+                class: "music-visualizer"
+            },
+            {
+                name: "Collaborative Whiteboard",
+                icon: '<svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><circle cx="8" cy="8" r="1" opacity="0.3"/><circle cx="12" cy="8" r="1" opacity="0.3"/><circle cx="16" cy="8" r="1" opacity="0.3"/></svg>',
+                description: "Real-time collaborative whiteboard with multi-user drawing, cursor tracking, and live synchronization.",
+                path: "Collaborative Whiteboard/index.html",
+                class: "whiteboard"
+            },
+            {
+                name: "Quantum Computing Simulator",
+                icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="1"/><circle cx="12" cy="12" r="3" fill="currentColor" opacity="0.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg>',
+                description: "Interactive quantum circuit builder with real-time simulation, Bloch sphere visualization, and quantum gates.",
+                path: "Quantum Computing Simulator/index.html",
+                class: "quantum-simulator"
             },
             {
                 name: "Bubble Game",

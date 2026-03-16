@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Solar System - Interactive Visualization</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #000;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #canvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+            padding: 20px;
+            text-align: center;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(255,255,255,0.3);
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.8;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+        }
+
+        .controls {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            width: 280px;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        .control-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .control-group h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .planet-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .planet-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .planet-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .planet-item.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .planet-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .planet-name {
+            flex: 1;
+            font-size: 0.9rem;
+        }
+
+        .planet-distance {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .speed-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .slider {
+            flex: 1;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        .speed-value {
+            font-size: 0.9rem;
+            min-width: 30px;
+        }
+
+        .toggle-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .toggle-btn.active {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: white;
+        }
+
+        .info-panel {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 15px 20px;
+            max-width: 300px;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .info-panel.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .info-panel h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .info-panel p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 5px;
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 20;
+        }
+
+        .loading.hide {
+            display: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .instructions {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 0.85rem;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .instructions h4 {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .instructions p {
+            margin: 4px 0;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .controls {
+                top: auto;
+                bottom: 20px;
+                right: 10px;
+                left: 10px;
+                transform: none;
+                width: auto;
+            }
+
+            .info-panel {
+                max-width: 250px;
+            }
+
+            .instructions {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Loading Solar System...</p>
+    </div>
+
+    <div class="header">
+        <h1>🌌 3D Solar System</h1>
+        <p>Interactive planetary visualization with real astronomical data</p>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <div class="controls">
+        <div class="control-group">
+            <h3>🪐 Planets</h3>
+            <div class="planet-list" id="planetList">
+                <!-- Planets will be added dynamically -->
+            </div>
+        </div>
+
+        <div class="control-group">
+            <h3>⚡ Speed</h3>
+            <div class="speed-control">
+                <input type="range" class="slider" id="speedSlider" min="0" max="10" value="1" step="0.1">
+                <span class="speed-value" id="speedValue">1.0x</span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <h3>🎮 Controls</h3>
+            <div class="toggle-buttons">
+                <button class="toggle-btn active" id="orbitToggle">Orbits</button>
+                <button class="toggle-btn active" id="labelToggle">Labels</button>
+                <button class="toggle-btn" id="pauseToggle">Pause</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-panel" id="infoPanel">
+        <h4 id="planetName">Planet Name</h4>
+        <p id="planetInfo">Planet information will appear here</p>
+    </div>
+
+    <div class="instructions">
+        <h4>🎮 Controls</h4>
+        <p>🖱️ Left click + drag: Rotate view</p>
+        <p>🖱️ Right click + drag: Pan</p>
+        <p>🖱️ Scroll: Zoom in/out</p>
+        <p>📱 Touch: Pinch to zoom, drag to rotate</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="solar-system.js"></script>
+</body>
+</html>
