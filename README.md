@@ -38,6 +38,9 @@ Welcome to **Mocha** - my collection of creative web development projects and ex
 | [Voice Music Visualizer](Voice%20Music%20Visualizer/index.html) | Voice-controlled music visualizer with real-time audio analysis | Web Audio API, Speech Recognition, Canvas |
 | [Collaborative Whiteboard](Collaborative%20Whiteboard/index.html) | Real-time collaborative whiteboard with multi-user support | WebRTC, Canvas, Socket.io |
 | [Quantum Computing Simulator](Quantum%20Computing%20Simulator/index.html) | Interactive quantum circuit builder with simulation | JavaScript, Quantum Computing, Complex Numbers |
+| [Holographic Universe Explorer](Holographic%20Universe%20Explorer/index.html) | 4D spacetime visualization with black holes and wormholes | Canvas, 4D Mathematics, Physics Simulation |
+| [Neural Dream Generator](Neural%20Dream%20Generator/index.html) | AI-powered subconscious visualization and dream interpreter | Neural Networks, Canvas, Psychology Algorithms |
+| [Time Travel Simulator](Time%20Travel%20Simulator/index.html) | Interactive timeline manipulation with paradox detection | Temporal Physics, Canvas, Alternate Universe Theory |
 | [Bubble Game](Bubble%20Game/index.html) | Interactive bubble popping game with physics | HTML5, CSS3, JavaScript |
 | [City Map](City%20Map/City%20Map.html) | Interactive city map visualization | JavaScript, CSS Animations |
 | [Geometry Dance](Geometry%20Dance/Colour.html) | Geometric shapes dancing in patterns | SVG, CSS Animations |
@@ -89,27 +92,30 @@ Welcome to **Mocha** - my collection of creative web development projects and ex
 - **Modern Gradients**: Beautiful color gradients for visual appeal
 - **Dark/Light Themes**: Optimized for comfortable viewing
 
-### 🌟 New Advanced Projects
+### 🌟 Revolutionary Projects
 
 **🤖 AI-Powered Drawing Canvas**
 - Real-time style transfer using advanced algorithms
 - Apply Van Gogh, Picasso, Monet, and other artistic styles
 - Interactive drawing tools with multiple brushes and effects
 
-**🌌 3D Solar System**
-- Interactive planetary visualization with Three.js
-- Real astronomical data and orbital mechanics
-- Zoom, rotate, and explore the solar system in 3D
+**🌌 Holographic Universe Explorer**
+- 4D spacetime visualization with interactive exploration
+- Black holes, wormholes, and quantum foam simulation
+- Real-time physics and gravitational effects
+- Navigate through 4D space with time dilation
 
-**🎵 Voice Music Visualizer**
-- Voice-controlled visualizations using speech recognition
-- Real-time audio analysis and frequency visualization
-- Multiple visualization modes and effects
+**🧠 Neural Dream Generator**
+- AI-powered subconscious visualization
+- Transform dreams and thoughts into interactive neural art
+- Emotion-based filtering and creative enhancement
+- Real-time neural network visualization
 
-**🎨 Collaborative Whiteboard**
-- Real-time multi-user drawing and collaboration
-- Live cursor tracking and user presence
-- Share and collaborate on drawings in real-time
+**⏰ Time Travel Simulator**
+- Interactive timeline manipulation system
+- Paradox detection and alternate universe exploration
+- Historical events and future predictions
+- Navigate from ancient Egypt to future colonies
 
 **⚛️ Quantum Computing Simulator**
 - Interactive quantum circuit builder
