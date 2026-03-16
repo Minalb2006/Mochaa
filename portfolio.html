@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 300% 100%;
+            animation: gradient 3s ease infinite;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .project-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .project-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+        .project-card:nth-child(5) { animation-delay: 0.5s; }
+        .project-card:nth-child(6) { animation-delay: 0.6s; }
+        .project-card:nth-child(7) { animation-delay: 0.7s; }
+        .project-card:nth-child(8) { animation-delay: 0.8s; }
+        .project-card:nth-child(9) { animation-delay: 0.9s; }
+        .project-card:nth-child(10) { animation-delay: 1.0s; }
+        .project-card:nth-child(11) { animation-delay: 1.1s; }
+        .project-card:nth-child(12) { animation-delay: 1.2s; }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>My Creative Projects</h1>
+        <p>Explore my collection of interactive web experiments and applications</p>
+    </div>
+
+    <div class="projects-grid" id="projectsContainer">
+        <!-- Projects will be dynamically added here -->
+    </div>
+
+    <script>
+        const projects = [
+            {
+                name: "Bubble Game",
+                icon: "🫧",
+                description: "An interactive bubble popping game with colorful animations and physics.",
+                path: "Bubble Game/index.html"
+            },
+            {
+                name: "City Map",
+                icon: "🗺️",
+                description: "Interactive city map visualization with dynamic elements.",
+                path: "City Map/City Map.html"
+            },
+            {
+                name: "Geometry Dance",
+                icon: "🔷",
+                description: "Geometric shapes dancing in colorful patterns and animations.",
+                path: "Geometry Dance/Colour.html"
+            },
+            {
+                name: "Girl",
+                icon: "👧",
+                description: "Creative character design and animation project.",
+                path: "Girl/girl.html"
+            },
+            {
+                name: "Kaleidoscope",
+                icon: "🔮",
+                description: "Mesmerizing kaleidoscope patterns with interactive controls.",
+                path: "Kaleidoscope/Kaleidoscope.html"
+            },
+            {
+                name: "Mocha Practice",
+                icon: "☕",
+                description: "Practice exercises and experiments with web technologies.",
+                path: "Mocha Practice/Mocha.html"
+            },
+            {
+                name: "Mocha Webpage",
+                icon: "🌐",
+                description: "Main webpage project with various web development concepts.",
+                path: "Mocha Webpage/index.html"
+            },
+            {
+                name: "Neon Cloth Physics",
+                icon: "✨",
+                description: "Neon-colored cloth physics simulation with realistic movements.",
+                path: "Noen Cloth Physics/Neon Coth Physics.html"
+            },
+            {
+                name: "Primordial Soup",
+                icon: "🧬",
+                description: "Evolution simulation showing life developing from primordial soup.",
+                path: "Primordial Soup/Primordial Soup.html"
+            },
+            {
+                name: "Space Robot",
+                icon: "🤖",
+                description: "Space-themed robot adventure game with interactive elements.",
+                path: "Space Robot/Space Robot.html"
+            },
+            {
+                name: "Todo-List",
+                icon: "📝",
+                description: "Modern task management application with Next.js.",
+                path: "Todo-List/",
+                isApp: true
+            },
+            {
+                name: "Vaartaalaap",
+                icon: "💬",
+                description: "Communication platform for conversations and discussions.",
+                path: "Vaartaalaap/"
+            }
+        ];
+
+        function createProjectCard(project, index) {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.style.animationDelay = `${index * 0.1}s`;
+            
+            const icon = document.createElement('div');
+            icon.className = 'project-icon';
+            icon.textContent = project.icon;
+            
+            const title = document.createElement('h3');
+            title.className = 'project-title';
+            title.textContent = project.name;
+            
+            const description = document.createElement('p');
+            description.className = 'project-description';
+            description.textContent = project.description;
+            
+            const button = document.createElement('a');
+            button.className = 'project-button';
+            button.textContent = project.isApp ? 'Open App' : 'View Project';
+            button.href = project.path;
+            button.target = '_blank';
+            button.rel = 'noopener noreferrer';
+            
+            card.appendChild(icon);
+            card.appendChild(title);
+            card.appendChild(description);
+            card.appendChild(button);
+            
+            return card;
+        }
+
+        function initializeProjects() {
+            const container = document.getElementById('projectsContainer');
+            
+            projects.forEach((project, index) => {
+                const card = createProjectCard(project, index);
+                container.appendChild(card);
+            });
+        }
+
+        // Initialize projects when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializeProjects);
+
+        // Add some interactive effects
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.project-card');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            cards.forEach((card, index) => {
+                const offsetX = (x - 0.5) * 10 * (index % 2 === 0 ? 1 : -1);
+                const offsetY = (y - 0.5) * 10 * (index % 2 === 0 ? -1 : 1);
+                card.style.transform = `translateY(-10px) translateX(${offsetX}px) translateY(${offsetY}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
