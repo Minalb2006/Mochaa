@@ -11,10 +11,79 @@
 
 ### 🚀 About Me
 
-- 👨‍💻 I’m a **Fullstack Developer** skilled in **HTML, CSS, JS, React, C++, Java, and Python**.
+- 👨‍💻 I'm a **Fullstack Developer** skilled in **HTML, CSS, JS, React, C++, Java, and Python**.
 - 📍 **Location:** Waghdhara Issasani Hingna Road, Nagpur, Maharashtra - 441110 India
 - 📫 **Email:** [ayushharinkhere2005@gmail.com](mailto:ayushharinkhere2005@gmail.com)
-- 🤝 I’m looking to collaborate on Web Development projects.
+- 🤝 I'm looking to collaborate on Web Development projects.
+
+---
+
+## 🎯 Mocha - Creative Web Projects
+
+Welcome to **Mocha** - my collection of creative web development projects and experiments! This repository showcases various interactive web applications, games, and visualizations built with modern web technologies.
+
+### 📁 Projects Overview
+
+**🌟 Featured Project: [Mocha Webpage](Mocha%20Webpage/index.html)**
+- Comprehensive web development tutorials and examples
+- Learn JavaScript, HTML, CSS, and modern web development
+- Interactive coding exercises and demonstrations
+
+### 🎮 Interactive Projects
+
+| Project | Description | Technologies |
+|---------|-------------|--------------|
+| [Bubble Game](Bubble%20Game/index.html) | Interactive bubble popping game with physics | HTML5, CSS3, JavaScript |
+| [City Map](City%20Map/City%20Map.html) | Interactive city map visualization | JavaScript, CSS Animations |
+| [Geometry Dance](Geometry%20Dance/Colour.html) | Geometric shapes dancing in patterns | SVG, CSS Animations |
+| [Girl](Girl/girl.html) | Character design and animation | CSS3, JavaScript |
+| [Kaleidoscope](Kaleidoscope/Kaleidoscope.html) | Mesmerizing kaleidoscope patterns | Canvas, JavaScript |
+| [Neon Cloth Physics](Noen%20Cloth%20Physics/Neon%20Coth%20Physics.html) | Cloth physics simulation | JavaScript, Physics Engine |
+| [Primordial Soup](Primordial%20Soup/Primordial%20Soup.html) | Evolution simulation project | Canvas, JavaScript |
+| [Space Robot](Space%20Robot/Space%20Robot.html) | Space robot adventure game | HTML5, CSS3, JavaScript |
+
+### 🛠️ Development Tools
+
+| Project | Description | Technologies |
+|---------|-------------|--------------|
+| [Mocha Practice](Mocha%20Practice/Mocha.html) | Web technology practice exercises | HTML, CSS, JavaScript |
+| [Todo-List](Todo-List/) | Modern task management app | Next.js, React |
+| [Vaartaalaap](Vaartaalaap/) | Communication platform | JavaScript, Web APIs |
+
+### 🚀 Getting Started
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/AyushHarinkhede/Mocha.git
+   ```
+
+2. **Navigate to the project:**
+   ```bash
+   cd Mocha
+   ```
+
+3. **Open the main portfolio:**
+   - Open `Mocha.html` in your browser to see all projects
+   - Or navigate to individual project folders
+
+4. **For Next.js projects (Todo-List):**
+   ```bash
+   cd Todo-List
+   npm install
+   npm run dev
+   ```
+
+### 🎨 Design Features
+
+- **Minimalistic Design**: Clean, modern interface with subtle animations
+- **Project-Specific Styling**: Each project has unique color themes
+- **Responsive Layout**: Works perfectly on desktop and mobile devices
+- **Professional Icons**: Custom SVG icons for each project
+- **Featured Projects**: Highlighted showcase for main projects
+
+### 📱 Live Demo
+
+Check out the live portfolio: **[Open Mocha.html](Mocha.html)**
 
 ---
 
@@ -72,5 +141,15 @@
   <img src="https://github-readme-stats.vercel.app/api?username=AyushHarinkhede&show_icons=true&theme=radical" alt="stats" />
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=AyushHarinkhede&layout=compact&theme=radical" alt="languages" />
 </div>
+
+### 🤝 Contributing
+
+Feel free to explore, learn from, and get inspired by these projects. If you find any issues or have suggestions for improvements, please open an issue or submit a pull request!
+
+### 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
 
 

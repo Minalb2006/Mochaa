@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Projects Portfolio</title>
+    <title>Mocha - My Creative Projects</title>
     <style>
         * {
             margin: 0;
@@ -17,11 +17,13 @@
             min-height: 100vh;
             padding: 40px 20px;
             color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         .header h1 {
@@ -38,12 +40,172 @@
             font-weight: 400;
         }
 
+        .main-content {
+            flex: 1;
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 24px;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        /* Mocha Webpage - Featured Project */
+        .project-card.featured {
+            background: linear-gradient(135deg, #6f4e37 0%, #8b6f47 100%);
+            border: none;
+            color: white;
+            order: -1;
+            grid-column: 1 / -1;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            box-shadow: 0 8px 32px rgba(111, 78, 55, 0.3);
+        }
+
+        .project-card.featured .project-title {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .project-card.featured .project-description {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .project-card.featured .project-icon {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .project-card.featured .project-button {
+            background: white;
+            color: #6f4e37;
+        }
+
+        .project-card.featured .project-button:hover {
+            background: #f3f4f6;
+        }
+
+        /* Bubble Game */
+        .project-card.bubble-game {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-color: #90caf9;
+        }
+
+        .project-card.bubble-game .project-icon {
+            background: #2196f3;
+            color: white;
+        }
+
+        /* City Map */
+        .project-card.city-map {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-color: #ce93d8;
+        }
+
+        .project-card.city-map .project-icon {
+            background: #9c27b0;
+            color: white;
+        }
+
+        /* Geometry Dance */
+        .project-card.geometry-dance {
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+            border-color: #a5d6a7;
+        }
+
+        .project-card.geometry-dance .project-icon {
+            background: #4caf50;
+            color: white;
+        }
+
+        /* Girl */
+        .project-card.girl {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            border-color: #f48fb1;
+        }
+
+        .project-card.girl .project-icon {
+            background: #e91e63;
+            color: white;
+        }
+
+        /* Kaleidoscope */
+        .project-card.kaleidoscope {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-color: #ffb74d;
+        }
+
+        .project-card.kaleidoscope .project-icon {
+            background: #ff9800;
+            color: white;
+        }
+
+        /* Mocha Practice */
+        .project-card.mocha-practice {
+            background: linear-gradient(135deg, #efebe9 0%, #d7ccc8 100%);
+            border-color: #bcaaa4;
+        }
+
+        .project-card.mocha-practice .project-icon {
+            background: #795548;
+            color: white;
+        }
+
+        /* Neon Cloth Physics */
+        .project-card.neon-cloth {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-color: #ba68c8;
+        }
+
+        .project-card.neon-cloth .project-icon {
+            background: #ab47bc;
+            color: white;
+        }
+
+        /* Primordial Soup */
+        .project-card.primordial-soup {
+            background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%);
+            border-color: #80cbc4;
+        }
+
+        .project-card.primordial-soup .project-icon {
+            background: #009688;
+            color: white;
+        }
+
+        /* Space Robot */
+        .project-card.space-robot {
+            background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
+            border-color: #9fa8da;
+        }
+
+        .project-card.space-robot .project-icon {
+            background: #3f51b5;
+            color: white;
+        }
+
+        /* Todo-List */
+        .project-card.todo-list {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border-color: #ef9a9a;
+        }
+
+        .project-card.todo-list .project-icon {
+            background: #f44336;
+            color: white;
+        }
+
+        /* Vaartaalaap */
+        .project-card.vaartaalaap {
+            background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+            border-color: #81d4fa;
+        }
+
+        .project-card.vaartaalaap .project-icon {
+            background: #03a9f4;
+            color: white;
         }
 
         .project-card {
@@ -115,6 +277,26 @@
             transform: translateY(-1px);
         }
 
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+            border-top: 1px solid #e5e7eb;
+            background: #ffffff;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .footer p {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2rem;
@@ -128,99 +310,132 @@
             .project-card {
                 padding: 24px;
             }
+
+            .project-card.featured {
+                padding: 32px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>My Creative Projects</h1>
-        <p>Explore my collection of interactive web experiments and applications</p>
+        <h1>Mocha</h1>
+        <p>Explore my collection of creative web experiments and applications</p>
     </div>
 
-    <div class="projects-grid" id="projectsContainer">
-        <!-- Projects will be dynamically added here -->
+    <div class="main-content">
+        <div class="projects-grid" id="projectsContainer">
+            <!-- Projects will be dynamically added here -->
+        </div>
+    </div>
+
+    <div class="footer">
+        <h3>Mocha</h3>
+        <p>Creative Web Development Projects & Experiments</p>
     </div>
 
     <script>
         const projects = [
             {
+                name: "Mocha Webpage",
+                icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+                description: "Main webpage with comprehensive web development concepts and tutorials. Learn JavaScript, HTML, CSS, and modern web development through interactive examples.",
+                path: "Mocha Webpage/index.html",
+                featured: true
+            },
+            {
                 name: "Bubble Game",
                 icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>',
                 description: "Interactive bubble popping game with physics.",
-                path: "Bubble Game/index.html"
+                path: "Bubble Game/index.html",
+                class: "bubble-game"
             },
             {
                 name: "City Map",
                 icon: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>',
                 description: "Interactive city map visualization.",
-                path: "City Map/City Map.html"
+                path: "City Map/City Map.html",
+                class: "city-map"
             },
             {
                 name: "Geometry Dance",
                 icon: '<svg viewBox="0 0 24 24"><polygon points="12,2 22,8.5 22,15.5 12,22 2,15.5 2,8.5"/></svg>',
                 description: "Geometric shapes dancing in patterns.",
-                path: "Geometry Dance/Colour.html"
+                path: "Geometry Dance/Colour.html",
+                class: "geometry-dance"
             },
             {
                 name: "Girl",
                 icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M12 14c-5 0-9 3-9 7v1h18v-1c0-4-4-7-9-7z"/></svg>',
                 description: "Character design and animation.",
-                path: "Girl/girl.html"
+                path: "Girl/girl.html",
+                class: "girl"
             },
             {
                 name: "Kaleidoscope",
                 icon: '<svg viewBox="0 0 24 24"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>',
                 description: "Mesmerizing kaleidoscope patterns.",
-                path: "Kaleidoscope/Kaleidoscope.html"
+                path: "Kaleidoscope/Kaleidoscope.html",
+                class: "kaleidoscope"
             },
             {
                 name: "Mocha Practice",
                 icon: '<svg viewBox="0 0 24 24"><path d="M18 6h-12c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2z"/></svg>',
                 description: "Web technology practice exercises.",
-                path: "Mocha Practice/Mocha.html"
-            },
-            {
-                name: "Mocha Webpage",
-                icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
-                description: "Main webpage with web concepts.",
-                path: "Mocha Webpage/index.html"
+                path: "Mocha Practice/Mocha.html",
+                class: "mocha-practice"
             },
             {
                 name: "Neon Cloth Physics",
                 icon: '<svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z M8 10h8v4H8z"/></svg>',
                 description: "Cloth physics simulation.",
-                path: "Noen Cloth Physics/Neon Coth Physics.html"
+                path: "Noen Cloth Physics/Neon Coth Physics.html",
+                class: "neon-cloth"
             },
             {
                 name: "Primordial Soup",
                 icon: '<svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><circle cx="12" cy="16" r="3"/></svg>',
                 description: "Evolution simulation project.",
-                path: "Primordial Soup/Primordial Soup.html"
+                path: "Primordial Soup/Primordial Soup.html",
+                class: "primordial-soup"
             },
             {
                 name: "Space Robot",
                 icon: '<svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="10" rx="2"/><rect x="8" y="3" width="3" height="3"/><rect x="13" y="3" width="3" height="3"/><rect x="8" y="17" width="3" height="3"/><rect x="13" y="17" width="3" height="3"/></svg>',
                 description: "Space robot adventure game.",
-                path: "Space Robot/Space Robot.html"
+                path: "Space Robot/Space Robot.html",
+                class: "space-robot"
             },
             {
                 name: "Todo-List",
                 icon: '<svg viewBox="0 0 24 24"><path d="M19 3h-14c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-14c0-1.1-.9-2-2-2z M10 17l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>',
                 description: "Modern task management app.",
                 path: "Todo-List/",
-                isApp: true
+                isApp: true,
+                class: "todo-list"
             },
             {
                 name: "Vaartaalaap",
                 icon: '<svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>',
                 description: "Communication platform.",
-                path: "Vaartaalaap/"
+                path: "Vaartaalaap/",
+                class: "vaartaalaap"
             }
         ];
 
         function createProjectCard(project, index) {
             const card = document.createElement('div');
             card.className = 'project-card';
+            
+            // Add featured class if project is featured
+            if (project.featured) {
+                card.classList.add('featured');
+            }
+            
+            // Add project-specific class if available
+            if (project.class) {
+                card.classList.add(project.class);
+            }
             
             const icon = document.createElement('div');
             icon.className = 'project-icon';
