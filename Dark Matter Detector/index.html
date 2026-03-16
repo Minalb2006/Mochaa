@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Matter Detector - Interactive Cosmic Ray Simulation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #cosmosCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .detector-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 360px;
+            background: rgba(10, 10, 30, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            z-index: 100;
+            box-shadow: 0 25px 50px rgba(138, 43, 226, 0.2);
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .detector-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(45deg, #8a2be2, #4b0082, #000);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            animation: detector-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes detector-pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(138, 43, 226, 0.5); }
+            50% { transform: scale(1.1); box-shadow: 0 0 40px rgba(138, 43, 226, 0.8); }
+        }
+
+        .panel-header h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            background: linear-gradient(45deg, #8a2be2, #4b0082);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .detection-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #00ffff;
+            margin-top: 5px;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00ffff;
+            animation: status-blink 2s infinite;
+        }
+
+        @keyframes status-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .control-section {
+            margin-bottom: 25px;
+        }
+
+        .control-section h3 {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            color: #ff00ff;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .slider-control {
+            margin-bottom: 18px;
+        }
+
+        .slider-control label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .slider {
+            flex: 1;
+            height: 6px;
+            background: linear-gradient(90deg, rgba(138, 43, 226, 0.3), rgba(75, 0, 130, 0.3));
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #8a2be2, #4b0082);
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 25px rgba(138, 43, 226, 0.8);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #8a2be2, #4b0082);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+        }
+
+        .value-display {
+            min-width: 45px;
+            text-align: right;
+            font-size: 0.85rem;
+            color: #00ffff;
+            font-weight: 600;
+        }
+
+        .detection-modes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .mode-btn {
+            padding: 12px;
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .mode-btn:hover {
+            background: rgba(138, 43, 226, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.3);
+        }
+
+        .mode-btn.active {
+            background: linear-gradient(135deg, #8a2be2, #4b0082);
+            color: white;
+            font-weight: 600;
+            border-color: transparent;
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .action-btn {
+            padding: 14px;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(75, 0, 130, 0.2));
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .action-btn:hover {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(75, 0, 130, 0.3));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4);
+        }
+
+        .action-btn.primary {
+            background: linear-gradient(135deg, #8a2be2, #4b0082);
+            border: none;
+            grid-column: 1 / -1;
+        }
+
+        .action-btn.primary:hover {
+            background: linear-gradient(135deg, #9932cc, #4b0082);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.6);
+        }
+
+        .detection-info {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(10, 10, 30, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            z-index: 100;
+            max-width: 320px;
+        }
+
+        .info-title {
+            font-size: 1rem;
+            color: #00ffff;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .info-text {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .detection-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            color: #ff00ff;
+            font-weight: 600;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 3px;
+        }
+
+        .alert-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 0, 0, 0.9);
+            backdrop-filter: blur(20px);
+            border: 2px solid #ff0000;
+            border-radius: 15px;
+            padding: 20px 30px;
+            z-index: 200;
+            display: none;
+            text-align: center;
+        }
+
+        .alert-panel.show {
+            display: block;
+            animation: alert-pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes alert-pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        .alert-title {
+            font-size: 1.2rem;
+            color: #ffff00;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .alert-text {
+            font-size: 0.9rem;
+            color: white;
+            line-height: 1.4;
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 1.5s ease;
+        }
+
+        .loading-screen.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .cosmic-loader {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .cosmic-ring {
+            position: absolute;
+            border: 2px solid;
+            border-radius: 50%;
+            animation: cosmic-rotate 4s linear infinite;
+        }
+
+        .cosmic-ring:nth-child(1) {
+            width: 100%;
+            height: 100%;
+            border-color: #8a2be2;
+            animation-delay: 0s;
+        }
+
+        .cosmic-ring:nth-child(2) {
+            width: 70%;
+            height: 70%;
+            top: 15%;
+            left: 15%;
+            border-color: #4b0082;
+            animation-delay: 0.5s;
+            animation-direction: reverse;
+        }
+
+        .cosmic-ring:nth-child(3) {
+            width: 40%;
+            height: 40%;
+            top: 30%;
+            left: 30%;
+            border-color: #000;
+            animation-delay: 1s;
+        }
+
+        @keyframes cosmic-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1.3rem;
+            color: #00ffff;
+            animation: text-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes text-glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(0, 255, 255, 0.8); }
+        }
+
+        @media (max-width: 768px) {
+            .detector-panel {
+                width: 300px;
+                right: 10px;
+                top: 10px;
+                padding: 20px;
+            }
+
+            .detection-info {
+                left: 10px;
+                bottom: 10px;
+                max-width: 280px;
+            }
+
+            .detection-modes {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="cosmic-loader">
+            <div class="cosmic-ring"></div>
+            <div class="cosmic-ring"></div>
+            <div class="cosmic-ring"></div>
+        </div>
+        <div class="loading-text">Initializing Dark Matter Detector...</div>
+    </div>
+
+    <canvas id="cosmosCanvas"></canvas>
+
+    <div class="alert-panel" id="alertPanel">
+        <div class="alert-title">⚠️ Dark Matter Detected!</div>
+        <div class="alert-text">Unusual gravitational anomaly detected in the cosmic ray data!</div>
+    </div>
+
+    <div class="detector-panel">
+        <div class="panel-header">
+            <div class="detector-icon">🔭</div>
+            <div>
+                <h2>Dark Matter Detector</h2>
+                <div class="detection-status">
+                    <div class="status-indicator"></div>
+                    <span>Scanning Active</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-section">
+            <h3>📡 Detection Parameters</h3>
+            
+            <div class="slider-control">
+                <label>Sensitivity Level</label>
+                <div class="slider-container">
+                    <input type="range" class="slider" id="sensitivity" min="0" max="100" step="1" value="70">
+                    <span class="value-display" id="sensitivityValue">70</span>
+                </div>
+            </div>
+
+            <div class="slider-control">
+                <label>Detection Range</label>
+                <div class="slider-container">
+                    <input type="range" class="slider" id="detectionRange" min="100" max="1000" step="50" value="500">
+                    <span class="value-display" id="rangeValue">500</span>
+                </div>
+            </div>
+
+            <div class="slider-control">
+                <label>Dark Matter Density</label>
+                <div class="slider-container">
+                    <input type="range" class="slider" id="darkMatterDensity" min="0" max="100" step="1" value="30">
+                    <span class="value-display" id="densityValue">30</span>
+                </div>
+            </div>
+
+            <div class="slider-control">
+                <label>Cosmic Ray Intensity</label>
+                <div class="slider-container">
+                    <input type="range" class="slider" id="cosmicRayIntensity" min="0" max="100" step="1" value="50">
+                    <span class="value-display" id="intensityValue">50</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-section">
+            <h3>🔍 Detection Modes</h3>
+            <div class="detection-modes">
+                <button class="mode-btn active" data-mode="gravitational">Gravitational Lensing</button>
+                <button class="mode-btn" data-mode="particle">Particle Detection</button>
+                <button class="mode-btn" data-mode="radiation">Radiation Mapping</button>
+                <button class="mode-btn" data-mode="quantum">Quantum Fluctuation</button>
+                <button class="mode-btn" data-mode="wavelength">Wavelength Analysis</button>
+                <button class="mode-btn" data-mode="dimensional">Dimensional Rift</button>
+            </div>
+        </div>
+
+        <div class="control-section">
+            <h3>⚡ Actions</h3>
+            <div class="action-buttons">
+                <button class="action-btn" id="pauseBtn">⏸️ Pause Scan</button>
+                <button class="action-btn" id="resetBtn">🔄 Reset Detector</button>
+                <button class="action-btn" id="alertBtn">⚠️ Test Alert</button>
+                <button class="action-btn" id="exportBtn">📊 Export Data</button>
+                <button class="action-btn primary" id="scanBtn">🚀 Deep Scan</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="detection-info">
+        <div class="info-title">🌌 Dark Matter Detection System</div>
+        <div class="info-text">
+            Advanced cosmic ray detection system for identifying dark matter signatures. 
+            Monitor gravitational anomalies and detect invisible mass in the universe.
+        </div>
+        <div class="detection-stats">
+            <div class="stat-item">
+                <div class="stat-value" id="detectionCount">0</div>
+                <div class="stat-label">Detections</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="darkMatterMass">0</div>
+                <div class="stat-label">Dark Mass (M☉)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="scanProgress">0</div>
+                <div class="stat-label">Scan Progress</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="anomalyLevel">0</div>
+                <div class="stat-label">Anomaly Level</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dark-matter-detector.js"></script>
+</body>
+</html>
