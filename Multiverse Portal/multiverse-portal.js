@@ -1,6 +1,4 @@
-import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
-import { OrbitControls } from 'https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js';
-
+const THREE = window.THREE;
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
 class MultiversePortal {
@@ -29,7 +27,7 @@ class MultiversePortal {
         this.camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 200);
         this.camera.position.set(0.6, 0.25, 3.2);
 
-        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+        this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
         this.controls.enableDamping = true;
         this.controls.dampingFactor = 0.08;
         this.controls.rotateSpeed = 0.5;
