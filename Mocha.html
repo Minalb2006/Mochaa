@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mocha - My Creative Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,13 +13,15 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: #f8f9fa;
             min-height: 100vh;
             padding: 40px 20px;
             color: #1a1a1a;
             display: flex;
             flex-direction: column;
+            font-weight: 400;
+            line-height: 1.6;
         }
 
         .header {
@@ -28,16 +31,18 @@
 
         .header h1 {
             font-size: 2.5rem;
-            font-weight: 300;
+            font-weight: 600;
             color: #1a1a1a;
             margin-bottom: 8px;
             letter-spacing: -0.5px;
+            font-family: 'Poppins', sans-serif;
         }
 
         .header p {
             font-size: 1rem;
             color: #6b7280;
             font-weight: 400;
+            font-family: 'Inter', sans-serif;
         }
 
         .main-content {
@@ -67,10 +72,14 @@
         .project-card.featured .project-title {
             color: white;
             font-size: 1.5rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
         }
 
         .project-card.featured .project-description {
             color: rgba(255, 255, 255, 0.9);
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
         }
 
         .project-card.featured .project-icon {
@@ -87,7 +96,7 @@
             background: #f3f4f6;
         }
 
-        /* 3D Solar System */
+        /* 3D Solar System - Enhanced Blue Theme */
         .project-card.solar-system {
             background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
             border-color: #90caf9;
@@ -99,6 +108,14 @@
             box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
+        }
+
+        .project-card.solar-system .project-title {
+            color: #1565c0;
+        }
+
+        .project-card.solar-system .project-description {
+            color: #0d47a1;
         }
 
         .project-card.solar-system .project-button {
@@ -116,7 +133,7 @@
             box-shadow: 0 6px 20px rgba(25, 118, 210, 0.4);
         }
 
-        /* Bubble Game */
+        /* Bubble Game - Enhanced Cyan Theme */
         .project-card.bubble-game {
             background: linear-gradient(135deg, #e1f5fe 0%, #81d4fa 100%);
             border-color: #4fc3f7;
@@ -128,6 +145,14 @@
             box-shadow: 0 4px 15px rgba(41, 182, 246, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
+        }
+
+        .project-card.bubble-game .project-title {
+            color: #0277bd;
+        }
+
+        .project-card.bubble-game .project-description {
+            color: #01579b;
         }
 
         .project-card.bubble-game .project-button {
@@ -145,7 +170,7 @@
             box-shadow: 0 6px 20px rgba(2, 136, 209, 0.4);
         }
 
-        /* City Map */
+        /* City Map - Enhanced Purple Theme */
         .project-card.city-map {
             background: linear-gradient(135deg, #f3e5f5 0%, #ce93d8 100%);
             border-color: #ba68c8;
@@ -157,6 +182,14 @@
             box-shadow: 0 4px 15px rgba(171, 71, 188, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
+        }
+
+        .project-card.city-map .project-title {
+            color: #7b1fa2;
+        }
+
+        .project-card.city-map .project-description {
+            color: #6a1b9a;
         }
 
         .project-card.city-map .project-button {
@@ -174,7 +207,7 @@
             box-shadow: 0 6px 20px rgba(142, 36, 170, 0.4);
         }
 
-        /* Geometry Dance */
+        /* Geometry Dance - Enhanced Orange Theme */
         .project-card.geometry-dance {
             background: linear-gradient(135deg, #fff3e0 0%, #ffb74d 100%);
             border-color: #ffa726;
@@ -186,6 +219,14 @@
             box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
+        }
+
+        .project-card.geometry-dance .project-title {
+            color: #ef6c00;
+        }
+
+        .project-card.geometry-dance .project-description {
+            color: #e65100;
         }
 
         .project-card.geometry-dance .project-button {
@@ -203,7 +244,7 @@
             box-shadow: 0 6px 20px rgba(245, 124, 0, 0.4);
         }
 
-        /* Girl */
+        /* Girl - Enhanced Pink Theme */
         .project-card.girl {
             background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
             border-color: #f48fb1;
@@ -215,6 +256,14 @@
             box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
+        }
+
+        .project-card.girl .project-title {
+            color: #ad1457;
+        }
+
+        .project-card.girl .project-description {
+            color: #880e4f;
         }
 
         .project-card.girl .project-button {
@@ -232,7 +281,7 @@
             box-shadow: 0 6px 20px rgba(194, 24, 91, 0.4);
         }
 
-        /* Kaleidoscope */
+        /* Kaleidoscope - Enhanced Green Theme */
         .project-card.kaleidoscope {
             background: linear-gradient(135deg, #e8f5e8 0%, #66bb6a 100%);
             border-color: #4caf50;
@@ -244,6 +293,14 @@
             box-shadow: 0 4px 15px rgba(67, 160, 71, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
+        }
+
+        .project-card.kaleidoscope .project-title {
+            color: #2e7d32;
+        }
+
+        .project-card.kaleidoscope .project-description {
+            color: #1b5e20;
         }
 
         .project-card.kaleidoscope .project-button {
@@ -261,7 +318,7 @@
             box-shadow: 0 6px 20px rgba(56, 142, 60, 0.4);
         }
 
-        /* Mocha Practice */
+        /* Mocha Practice - Enhanced Yellow Theme */
         .project-card.mocha-practice {
             background: linear-gradient(135deg, #fff8e1 0%, #ffe082 100%);
             border-color: #ffd54f;
@@ -273,6 +330,14 @@
             box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
+        }
+
+        .project-card.mocha-practice .project-title {
+            color: #ff8f00;
+        }
+
+        .project-card.mocha-practice .project-description {
+            color: #ff6f00;
         }
 
         .project-card.mocha-practice .project-button {
@@ -290,7 +355,7 @@
             box-shadow: 0 6px 20px rgba(255, 160, 0, 0.4);
         }
 
-        /* Mocha Webpage */
+        /* Mocha Webpage - Enhanced Teal Theme */
         .project-card.mocha-webpage {
             background: linear-gradient(135deg, #e0f2f1 0%, #4db6ac 100%);
             border-color: #26a69a;
@@ -302,6 +367,14 @@
             box-shadow: 0 4px 15px rgba(0, 137, 123, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
+        }
+
+        .project-card.mocha-webpage .project-title {
+            color: #00695c;
+        }
+
+        .project-card.mocha-webpage .project-description {
+            color: #004d40;
         }
 
         .project-card.mocha-webpage .project-button {
@@ -319,7 +392,7 @@
             box-shadow: 0 6px 20px rgba(0, 121, 107, 0.4);
         }
 
-        /* Neon Cloth Physics */
+        /* Neon Cloth Physics - Enhanced Deep Purple Theme */
         .project-card.neon-cloth {
             background: linear-gradient(135deg, #f3e5f5 0%, #7e57c2 100%);
             border-color: #673ab7;
@@ -331,6 +404,14 @@
             box-shadow: 0 4px 15px rgba(94, 53, 177, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
+        }
+
+        .project-card.neon-cloth .project-title {
+            color: #4527a0;
+        }
+
+        .project-card.neon-cloth .project-description {
+            color: #311b92;
         }
 
         .project-card.neon-cloth .project-button {
@@ -348,7 +429,7 @@
             box-shadow: 0 6px 20px rgba(81, 45, 168, 0.4);
         }
 
-        /* Primordial Soup */
+        /* Primordial Soup - Enhanced Indigo Theme */
         .project-card.primordial-soup {
             background: linear-gradient(135deg, #e8eaf6 0%, #5c6bc0 100%);
             border-color: #3f51b5;
@@ -360,6 +441,14 @@
             box-shadow: 0 4px 15px rgba(57, 73, 171, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
+        }
+
+        .project-card.primordial-soup .project-title {
+            color: #283593;
+        }
+
+        .project-card.primordial-soup .project-description {
+            color: #1a237e;
         }
 
         .project-card.primordial-soup .project-button {
@@ -377,7 +466,7 @@
             box-shadow: 0 6px 20px rgba(48, 63, 159, 0.4);
         }
 
-        /* Space Robot */
+        /* Space Robot - Enhanced Brown Theme */
         .project-card.space-robot {
             background: linear-gradient(135deg, #efebe9 0%, #a1887f 100%);
             border-color: #8d6e63;
@@ -389,6 +478,14 @@
             box-shadow: 0 4px 15px rgba(121, 85, 72, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
+        }
+
+        .project-card.space-robot .project-title {
+            color: #5d4037;
+        }
+
+        .project-card.space-robot .project-description {
+            color: #4e342e;
         }
 
         .project-card.space-robot .project-button {
@@ -446,15 +543,18 @@
             font-size: 1.25rem;
             color: #1a1a1a;
             margin-bottom: 8px;
-            font-weight: 500;
+            font-weight: 600;
             letter-spacing: -0.25px;
+            font-family: 'Poppins', sans-serif;
         }
 
         .project-description {
             color: #6b7280;
             margin-bottom: 24px;
-            line-height: 1.5;
+            line-height: 1.6;
             font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
         }
 
         .project-button {
@@ -469,6 +569,7 @@
             transition: all 0.2s ease;
             text-decoration: none;
             display: inline-block;
+            font-family: 'Inter', sans-serif;
         }
 
         .project-button:hover {
@@ -486,14 +587,17 @@
 
         .footer h3 {
             font-size: 1.5rem;
-            font-weight: 300;
+            font-weight: 600;
             color: #1a1a1a;
             margin-bottom: 8px;
+            font-family: 'Poppins', sans-serif;
         }
 
         .footer p {
             color: #6b7280;
             font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
         }
 
         @media (max-width: 768px) {
