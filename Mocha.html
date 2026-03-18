@@ -713,11 +713,11 @@
             return false;
         });
 
-        // Disable drag and drop
-        document.addEventListener('dragstart', function(e) {
-            e.preventDefault();
-            return false;
-        });
+        // Disable drag and drop 
+        document.addEventListener('dragstart', function(e) { 
+            e.preventDefault(); 
+            return false;  
+        }); 
 
         document.addEventListener('drop', function(e) {
             e.preventDefault();

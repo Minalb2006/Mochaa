@@ -63,12 +63,12 @@
 - **Features**: Interactive bubble popping game
 - **Tech**: HTML5 Canvas, Physics Engine
 - **Special**: Smooth animations and particle effects
-
+ 
 #### **🏙️ City Map** - `[City%20Map/City%20Map.html]`
 - **Theme**: Purple Gradient
 - **Features**: Interactive city visualization
 - **Tech**: JavaScript, CSS Animations
-- **Special**: Dynamic map interactions
+- **Special**: Dynamic map interactions 
 
 #### **🔷 Geometry Dance** - `[Geometry%20Dance/Colour.html]`
 - **Theme**: Orange Gradient
@@ -76,7 +76,7 @@
 - **Tech**: SVG, CSS3 Transforms
 - **Special**: Mesmerizing dance patterns
 
-#### **👧 Girl** - `[Girl/girl.html]`
+#### **👧 Girl** - `[Girl/girl.html]` 
 - **Theme**: Pink Gradient
 - **Features**: Character design and animation
 - **Tech**: CSS3, JavaScript
