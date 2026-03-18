@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mocha - My Creative Projects</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Bubblegum+Sans&family=Fredoka:wght@300;400;500;600;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
         }
 
         body {
-            font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Fredoka', 'Bubblegum Sans', 'Kalam', cursive, sans-serif;
             background: #f8f9fa;
             min-height: 100vh;
             padding: 40px 20px;
@@ -22,6 +22,7 @@
             flex-direction: column;
             font-weight: 400;
             line-height: 1.6;
+            letter-spacing: 0.5px;
         }
 
         .header {
@@ -34,15 +35,17 @@
             font-weight: 600;
             color: #1a1a1a;
             margin-bottom: 8px;
-            letter-spacing: -0.5px;
-            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
+            font-family: 'Bubblegum Sans', 'Fredoka', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .header p {
             font-size: 1rem;
             color: #6b7280;
             font-weight: 400;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Kalam', 'Fredoka', cursive;
+            letter-spacing: 0.3px;
         }
 
         .main-content {
@@ -73,13 +76,16 @@
             color: white;
             font-size: 1.5rem;
             font-weight: 600;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Bubblegum Sans', 'Fredoka', cursive;
+            letter-spacing: 0.8px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .project-card.featured .project-description {
             color: rgba(255, 255, 255, 0.9);
-            font-family: 'Inter', sans-serif;
+            font-family: 'Kalam', 'Fredoka', cursive;
             font-weight: 400;
+            letter-spacing: 0.3px;
         }
 
         .project-card.featured .project-icon {
@@ -96,47 +102,59 @@
             background: #f3f4f6;
         }
 
-        /* 3D Solar System - Enhanced Blue Theme */
+        /* 3D Solar System - Enhanced Red Theme */
         .project-card.solar-system {
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-            border-color: #90caf9;
+            background: linear-gradient(135deg, #ffebee 0%, #ef5350 100%);
+            box-shadow: 0 8px 32px rgba(211, 47, 47, 0.15), 0 4px 16px rgba(244, 67, 54, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.solar-system:hover {
+            box-shadow: 0 12px 48px rgba(211, 47, 47, 0.25), 0 8px 24px rgba(244, 67, 54, 0.2), 0 0 0 1px rgba(244, 67, 54, 0.1);
+            transform: translateY(-4px) scale(1.02);
         }
 
         .project-card.solar-system .project-icon {
-            background: linear-gradient(45deg, #2196f3, #1976d2);
+            background: linear-gradient(45deg, #f44336, #d32f2f);
             color: white;
-            box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+            box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
         }
 
         .project-card.solar-system .project-title {
-            color: #1565c0;
+            color: #c62828;
         }
 
         .project-card.solar-system .project-description {
-            color: #0d47a1;
+            color: #b71c1c;
         }
 
         .project-card.solar-system .project-button {
-            background: linear-gradient(45deg, #1976d2, #1565c0);
+            background: linear-gradient(45deg, #d32f2f, #c62828);
             color: white;
             border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
             font-weight: 600;
             border-radius: 12px;
         }
 
         .project-card.solar-system .project-button:hover {
-            background: linear-gradient(45deg, #1565c0, #0d47a1);
+            background: linear-gradient(45deg, #c62828, #b71c1c);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(25, 118, 210, 0.4);
+            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.4);
         }
 
         /* Bubble Game - Enhanced Cyan Theme */
         .project-card.bubble-game {
             background: linear-gradient(135deg, #e1f5fe 0%, #81d4fa 100%);
-            border-color: #4fc3f7;
+            box-shadow: 0 8px 32px rgba(2, 136, 209, 0.15), 0 4px 16px rgba(41, 182, 246, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.bubble-game:hover {
+            box-shadow: 0 12px 48px rgba(2, 136, 209, 0.25), 0 8px 24px rgba(41, 182, 246, 0.2), 0 0 0 1px rgba(41, 182, 246, 0.1);
+            transform: translateY(-4px) scale(1.02);
         }
 
         .project-card.bubble-game .project-icon {
@@ -173,7 +191,13 @@
         /* City Map - Enhanced Purple Theme */
         .project-card.city-map {
             background: linear-gradient(135deg, #f3e5f5 0%, #ce93d8 100%);
-            border-color: #ba68c8;
+            box-shadow: 0 8px 32px rgba(142, 36, 170, 0.15), 0 4px 16px rgba(171, 71, 188, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.city-map:hover {
+            box-shadow: 0 12px 48px rgba(142, 36, 170, 0.25), 0 8px 24px rgba(171, 71, 188, 0.2), 0 0 0 1px rgba(171, 71, 188, 0.1);
+            transform: translateY(-4px) scale(1.02);
         }
 
         .project-card.city-map .project-icon {
@@ -210,7 +234,13 @@
         /* Geometry Dance - Enhanced Orange Theme */
         .project-card.geometry-dance {
             background: linear-gradient(135deg, #fff3e0 0%, #ffb74d 100%);
-            border-color: #ffa726;
+            box-shadow: 0 8px 32px rgba(245, 124, 0, 0.15), 0 4px 16px rgba(255, 152, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.geometry-dance:hover {
+            box-shadow: 0 12px 48px rgba(245, 124, 0, 0.25), 0 8px 24px rgba(255, 152, 0, 0.2), 0 0 0 1px rgba(255, 152, 0, 0.1);
+            transform: translateY(-4px) scale(1.02);
         }
 
         .project-card.geometry-dance .project-icon {
@@ -247,7 +277,13 @@
         /* Girl - Enhanced Pink Theme */
         .project-card.girl {
             background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
-            border-color: #f48fb1;
+            box-shadow: 0 8px 32px rgba(194, 24, 91, 0.15), 0 4px 16px rgba(233, 30, 99, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.girl:hover {
+            box-shadow: 0 12px 48px rgba(194, 24, 91, 0.25), 0 8px 24px rgba(233, 30, 99, 0.2), 0 0 0 1px rgba(233, 30, 99, 0.1);
+            transform: translateY(-4px) scale(1.02);
         }
 
         .project-card.girl .project-icon {
@@ -284,7 +320,13 @@
         /* Kaleidoscope - Enhanced Green Theme */
         .project-card.kaleidoscope {
             background: linear-gradient(135deg, #e8f5e8 0%, #66bb6a 100%);
-            border-color: #4caf50;
+            box-shadow: 0 8px 32px rgba(56, 142, 60, 0.15), 0 4px 16px rgba(67, 160, 71, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.kaleidoscope:hover {
+            box-shadow: 0 12px 48px rgba(56, 142, 60, 0.25), 0 8px 24px rgba(67, 160, 71, 0.2), 0 0 0 1px rgba(67, 160, 71, 0.1);
+            transform: translateY(-4px) scale(1.02);
         }
 
         .project-card.kaleidoscope .project-icon {
@@ -320,45 +362,57 @@
 
         /* Mocha Practice - Enhanced Yellow Theme */
         .project-card.mocha-practice {
-            background: linear-gradient(135deg, #fff8e1 0%, #ffe082 100%);
-            border-color: #ffd54f;
+            background: linear-gradient(135deg, #fffde7 0%, #ffeb3b 100%);
+            box-shadow: 0 8px 32px rgba(255, 235, 59, 0.15), 0 4px 16px rgba(255, 193, 7, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.mocha-practice:hover {
+            box-shadow: 0 12px 48px rgba(255, 235, 59, 0.25), 0 8px 24px rgba(255, 193, 7, 0.2), 0 0 0 1px rgba(255, 193, 7, 0.1);
+            transform: translateY(-4px) scale(1.02);
         }
 
         .project-card.mocha-practice .project-icon {
-            background: linear-gradient(45deg, #ffc107, #ffa000);
+            background: linear-gradient(45deg, #ffeb3b, #ffc107);
             color: #333;
-            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 235, 59, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
         }
 
         .project-card.mocha-practice .project-title {
-            color: #ff8f00;
+            color: #f57f17;
         }
 
         .project-card.mocha-practice .project-description {
-            color: #ff6f00;
+            color: #f9a825;
         }
 
         .project-card.mocha-practice .project-button {
-            background: linear-gradient(45deg, #ffa000, #ff8f00);
+            background: linear-gradient(45deg, #ffc107, #ffeb3b);
             color: #333;
             border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 15px rgba(255, 160, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 235, 59, 0.3);
             font-weight: 600;
             border-radius: 12px;
         }
 
         .project-card.mocha-practice .project-button:hover {
-            background: linear-gradient(45deg, #ff8f00, #ff6f00);
+            background: linear-gradient(45deg, #ffeb3b, #fff176);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 160, 0, 0.4);
+            box-shadow: 0 6px 20px rgba(255, 235, 59, 0.4);
         }
 
         /* Mocha Webpage - Enhanced Teal Theme */
         .project-card.mocha-webpage {
             background: linear-gradient(135deg, #e0f2f1 0%, #4db6ac 100%);
-            border-color: #26a69a;
+            box-shadow: 0 8px 32px rgba(0, 121, 107, 0.15), 0 4px 16px rgba(0, 137, 123, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.mocha-webpage:hover {
+            box-shadow: 0 12px 48px rgba(0, 121, 107, 0.25), 0 8px 24px rgba(0, 137, 123, 0.2), 0 0 0 1px rgba(0, 137, 123, 0.1);
+            transform: translateY(-4px) scale(1.02);
         }
 
         .project-card.mocha-webpage .project-icon {
@@ -395,7 +449,13 @@
         /* Neon Cloth Physics - Enhanced Deep Purple Theme */
         .project-card.neon-cloth {
             background: linear-gradient(135deg, #f3e5f5 0%, #7e57c2 100%);
-            border-color: #673ab7;
+            box-shadow: 0 8px 32px rgba(81, 45, 168, 0.15), 0 4px 16px rgba(94, 53, 177, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.neon-cloth:hover {
+            box-shadow: 0 12px 48px rgba(81, 45, 168, 0.25), 0 8px 24px rgba(94, 53, 177, 0.2), 0 0 0 1px rgba(94, 53, 177, 0.1);
+            transform: translateY(-4px) scale(1.02);
         }
 
         .project-card.neon-cloth .project-icon {
@@ -432,7 +492,13 @@
         /* Primordial Soup - Enhanced Indigo Theme */
         .project-card.primordial-soup {
             background: linear-gradient(135deg, #e8eaf6 0%, #5c6bc0 100%);
-            border-color: #3f51b5;
+            box-shadow: 0 8px 32px rgba(48, 63, 159, 0.15), 0 4px 16px rgba(57, 73, 171, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.primordial-soup:hover {
+            box-shadow: 0 12px 48px rgba(48, 63, 159, 0.25), 0 8px 24px rgba(57, 73, 171, 0.2), 0 0 0 1px rgba(57, 73, 171, 0.1);
+            transform: translateY(-4px) scale(1.02);
         }
 
         .project-card.primordial-soup .project-icon {
@@ -469,7 +535,13 @@
         /* Space Robot - Enhanced Brown Theme */
         .project-card.space-robot {
             background: linear-gradient(135deg, #efebe9 0%, #a1887f 100%);
-            border-color: #8d6e63;
+            box-shadow: 0 8px 32px rgba(109, 76, 65, 0.15), 0 4px 16px rgba(121, 85, 72, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.space-robot:hover {
+            box-shadow: 0 12px 48px rgba(109, 76, 65, 0.25), 0 8px 24px rgba(121, 85, 72, 0.2), 0 0 0 1px rgba(121, 85, 72, 0.1);
+            transform: translateY(-4px) scale(1.02);
         }
 
         .project-card.space-robot .project-icon {
@@ -544,8 +616,9 @@
             color: #1a1a1a;
             margin-bottom: 8px;
             font-weight: 600;
-            letter-spacing: -0.25px;
-            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.6px;
+            font-family: 'Bubblegum Sans', 'Fredoka', cursive;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         .project-description {
@@ -553,8 +626,9 @@
             margin-bottom: 24px;
             line-height: 1.6;
             font-size: 0.95rem;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Kalam', 'Fredoka', cursive;
             font-weight: 400;
+            letter-spacing: 0.2px;
         }
 
         .project-button {
@@ -562,14 +636,16 @@
             color: #ffffff;
             border: none;
             padding: 10px 20px;
-            border-radius: 6px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 0.875rem;
             font-weight: 500;
             transition: all 0.2s ease;
             text-decoration: none;
             display: inline-block;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Fredoka', 'Bubblegum Sans', cursive;
+            letter-spacing: 0.4px;
+            border-radius: 20px;
         }
 
         .project-button:hover {
@@ -590,14 +666,17 @@
             font-weight: 600;
             color: #1a1a1a;
             margin-bottom: 8px;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Bubblegum Sans', 'Fredoka', cursive;
+            letter-spacing: 0.8px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         .footer p {
             color: #6b7280;
             font-size: 0.9rem;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Kalam', 'Fredoka', cursive;
             font-weight: 400;
+            letter-spacing: 0.3px;
         }
 
         @media (max-width: 768px) {
@@ -621,6 +700,104 @@
     </style>
 </head>
 <body>
+    <script>
+        // Disable right-click context menu
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Disable text selection
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Disable drag and drop
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        document.addEventListener('drop', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Disable copy, cut, paste
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        document.addEventListener('cut', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        document.addEventListener('paste', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Block developer tools keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // F12
+            if (e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+Shift+I
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+Shift+J
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+U (View Source)
+            if (e.ctrlKey && e.keyCode === 85) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+Shift+C
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 67) {
+                e.preventDefault();
+                return false;
+            }
+            // F11 (Fullscreen)
+            if (e.keyCode === 122) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Detect and block developer tools
+        var devtools = {
+            open: false,
+            orientation: null
+        };
+        
+        setInterval(function() {
+            if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200) {
+                if (!devtools.open) {
+                    devtools.open = true;
+                    document.body.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif; font-size: 24px; color: #333; background: #f0f0f0;">Developer tools are disabled on this page.</div>';
+                }
+            } else {
+                devtools.open = false;
+            }
+        }, 500);
+
+        // Disable console
+        console.log = function() {};
+        console.warn = function() {};
+        console.error = function() {};
+        console.info = function() {};
+        console.debug = function() {};
+    </script>
     <div class="header">
         <h1>Mocha</h1>
         <p>Explore my collection of creative web experiments and applications</p>
