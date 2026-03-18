@@ -22,16 +22,22 @@ class SolarSystem {
                 speed: 0,
                 color: 0xffdd00,
                 info: 'The Sun is the star at the center of our Solar System. It is a nearly perfect sphere of hot plasma.',
-                texture: null
+                texture: null,
+                emissiveColor: 0xffaa00,
+                emissiveIntensity: 0.8,
+                atmosphere: false
             },
             {
                 name: 'Mercury',
                 radius: 0.3,
                 distance: 10,
                 speed: 4.74,
-                color: 0x8c8c8c,
+                color: 0x8c7853,
                 info: 'Mercury is the smallest planet in our Solar System and the closest to the Sun.',
-                texture: null
+                texture: null,
+                emissiveColor: 0x000000,
+                emissiveIntensity: 0,
+                atmosphere: false
             },
             {
                 name: 'Venus',
@@ -40,7 +46,10 @@ class SolarSystem {
                 speed: 3.5,
                 color: 0xffc649,
                 info: 'Venus is the second planet from the Sun and the hottest planet in our Solar System.',
-                texture: null
+                texture: null,
+                emissiveColor: 0xff9933,
+                emissiveIntensity: 0.1,
+                atmosphere: { color: 0xffcc66, opacity: 0.3 }
             },
             {
                 name: 'Earth',
@@ -49,16 +58,22 @@ class SolarSystem {
                 speed: 2.98,
                 color: 0x2e7dff,
                 info: 'Earth is the third planet from the Sun and the only astronomical object known to harbor life.',
-                texture: null
+                texture: null,
+                emissiveColor: 0x003366,
+                emissiveIntensity: 0.05,
+                atmosphere: { color: 0x87ceeb, opacity: 0.25 }
             },
             {
                 name: 'Mars',
                 radius: 0.4,
                 distance: 25,
                 speed: 2.41,
-                color: 0xff4444,
+                color: 0xcd5c5c,
                 info: 'Mars is the fourth planet from the Sun and is often called the "Red Planet".',
-                texture: null
+                texture: null,
+                emissiveColor: 0x8b0000,
+                emissiveIntensity: 0.05,
+                atmosphere: { color: 0xff6b6b, opacity: 0.2 }
             },
             {
                 name: 'Jupiter',
@@ -67,7 +82,10 @@ class SolarSystem {
                 speed: 1.31,
                 color: 0xffa756,
                 info: 'Jupiter is the largest planet in our Solar System and the fifth planet from the Sun.',
-                texture: null
+                texture: null,
+                emissiveColor: 0xcc6600,
+                emissiveIntensity: 0.05,
+                atmosphere: { color: 0xffb366, opacity: 0.15 }
             },
             {
                 name: 'Saturn',
@@ -77,6 +95,9 @@ class SolarSystem {
                 color: 0xf4e7d7,
                 info: 'Saturn is the sixth planet from the Sun and is famous for its prominent ring system.',
                 texture: null,
+                emissiveColor: 0xccbb99,
+                emissiveIntensity: 0.03,
+                atmosphere: { color: 0xffe4b5, opacity: 0.15 },
                 hasRings: true
             },
             {
@@ -86,7 +107,10 @@ class SolarSystem {
                 speed: 0.68,
                 color: 0x4fd0e7,
                 info: 'Uranus is the seventh planet from the Sun and has the third-largest planetary radius.',
-                texture: null
+                texture: null,
+                emissiveColor: 0x0088aa,
+                emissiveIntensity: 0.05,
+                atmosphere: { color: 0x66e0ff, opacity: 0.2 }
             },
             {
                 name: 'Neptune',
@@ -95,7 +119,10 @@ class SolarSystem {
                 speed: 0.54,
                 color: 0x4b70dd,
                 info: 'Neptune is the eighth and outermost planet in our Solar System.',
-                texture: null
+                texture: null,
+                emissiveColor: 0x003366,
+                emissiveIntensity: 0.08,
+                atmosphere: { color: 0x6699ff, opacity: 0.25 }
             }
         ];
         
@@ -121,53 +148,73 @@ class SolarSystem {
     setupScene() {
         // Scene setup
         this.scene = new THREE.Scene();
-        this.scene.fog = new THREE.FogExp2(0x000000, 0.0008);
+        this.scene.fog = new THREE.FogExp2(0x000011, 0.0008);
         
         // Camera setup
         this.camera = new THREE.PerspectiveCamera(
             75,
             window.innerWidth / window.innerHeight,
             0.1,
-            1000
+            2000
         );
-        this.camera.position.set(30, 30, 50);
+        this.camera.position.set(30, 20, 50);
         this.camera.lookAt(0, 0, 0);
         
         // Renderer setup
-        this.renderer = new THREE.WebGLRenderer({
-            canvas: document.getElementById('canvas'),
+        this.renderer = new THREE.WebGLRenderer({ 
             antialias: true,
-            alpha: true
+            alpha: true,
+            powerPreference: 'high-performance'
         });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.setPixelRatio(window.devicePixelRatio);
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        this.renderer.toneMappingExposure = 0.8;
+        this.renderer.outputColorSpace = THREE.SRGBColorSpace;
+        
+        document.getElementById('canvas').appendChild(this.renderer.domElement);
+        
+        window.addEventListener('resize', () => this.onWindowResize(), false);
     }
 
     createLights() {
-        // Ambient light
-        const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+        // Enhanced ambient light
+        const ambientLight = new THREE.AmbientLight(0x404040, 0.3);
         this.scene.add(ambientLight);
         
-        // Point light from sun
-        const sunLight = new THREE.PointLight(0xffffff, 2, 100);
+        // Enhanced sun light with better shadows
+        const sunLight = new THREE.PointLight(0xffffff, 2.5, 150);
         sunLight.position.set(0, 0, 0);
         sunLight.castShadow = true;
-        sunLight.shadow.mapSize.width = 2048;
-        sunLight.shadow.mapSize.height = 2048;
+        sunLight.shadow.mapSize.width = 4096;
+        sunLight.shadow.mapSize.height = 4096;
+        sunLight.shadow.camera.near = 0.5;
+        sunLight.shadow.camera.far = 150;
+        sunLight.shadow.bias = -0.001;
         this.scene.add(sunLight);
+        
+        // Add subtle rim lighting for planets
+        const rimLight = new THREE.DirectionalLight(0x4444ff, 0.2);
+        rimLight.position.set(50, 50, 50);
+        this.scene.add(rimLight);
     }
 
     createPlanets() {
         this.planetData.forEach((planetInfo, index) => {
-            // Create planet
-            const geometry = new THREE.SphereGeometry(planetInfo.radius, 32, 32);
+            // Create planet with enhanced 3D material
+            const geometry = new THREE.SphereGeometry(planetInfo.radius, 64, 64);
+            
+            // Create more realistic material
             const material = new THREE.MeshPhongMaterial({
                 color: planetInfo.color,
-                shininess: planetInfo.name === 'Sun' ? 100 : 30,
-                emissive: planetInfo.name === 'Sun' ? planetInfo.color : 0x000000,
-                emissiveIntensity: planetInfo.name === 'Sun' ? 0.5 : 0
+                emissive: planetInfo.emissiveColor,
+                emissiveIntensity: planetInfo.emissiveIntensity,
+                shininess: planetInfo.name === 'Sun' ? 100 : 60,
+                specular: planetInfo.name === 'Sun' ? 0xffffff : 0x222222,
+                bumpScale: 0.05,
+                wireframe: false
             });
             
             const planet = new THREE.Mesh(geometry, material);
@@ -178,12 +225,29 @@ class SolarSystem {
             this.scene.add(planet);
             this.planets.push(planet);
             
+            // Add atmosphere for planets that have one
+            if (planetInfo.atmosphere) {
+                const atmosphereGeometry = new THREE.SphereGeometry(
+                    planetInfo.radius * 1.15, 
+                    32, 
+                    32
+                );
+                const atmosphereMaterial = new THREE.MeshBasicMaterial({
+                    color: planetInfo.atmosphere.color,
+                    transparent: true,
+                    opacity: planetInfo.atmosphere.opacity,
+                    side: THREE.BackSide
+                });
+                const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
+                planet.add(atmosphere);
+            }
+            
             // Create orbit
             if (planetInfo.distance > 0) {
                 const orbitGeometry = new THREE.RingGeometry(
                     planetInfo.distance - 0.1,
                     planetInfo.distance + 0.1,
-                    64
+                    128
                 );
                 const orbitMaterial = new THREE.MeshBasicMaterial({
                     color: 0x404040,
@@ -197,73 +261,90 @@ class SolarSystem {
                 this.orbits.push(orbit);
             }
             
-            // Create Saturn's rings
+            // Add rings for Saturn
             if (planetInfo.hasRings) {
                 const ringGeometry = new THREE.RingGeometry(
                     planetInfo.radius * 1.5,
                     planetInfo.radius * 2.5,
-                    32
+                    64
                 );
                 const ringMaterial = new THREE.MeshBasicMaterial({
-                    color: 0xd4a574,
+                    color: 0xccbb99,
                     side: THREE.DoubleSide,
                     opacity: 0.7,
                     transparent: true
                 });
                 const rings = new THREE.Mesh(ringGeometry, ringMaterial);
-                rings.rotation.x = -Math.PI / 2;
+                rings.rotation.x = Math.PI / 2;
                 planet.add(rings);
             }
             
             // Create label
-            this.createLabel(planet);
+            const labelDiv = document.createElement('div');
+            labelDiv.className = 'planet-label';
+            labelDiv.textContent = planetInfo.name;
+            labelDiv.style.position = 'absolute';
+            labelDiv.style.color = 'white';
+            labelDiv.style.fontSize = '12px';
+            labelDiv.style.fontWeight = 'bold';
+            labelDiv.style.textShadow = '0 0 5px rgba(0,0,0,0.8)';
+            labelDiv.style.pointerEvents = 'none';
+            labelDiv.style.opacity = this.showLabels ? '1' : '0';
+            labelDiv.style.transition = 'opacity 0.3s';
+            document.body.appendChild(labelDiv);
+            this.labels.push(labelDiv);
         });
-    }
-
-    createLabel(planet) {
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        canvas.width = 256;
-        canvas.height = 64;
-        
-        context.fillStyle = 'rgba(0, 0, 0, 0.8)';
-        context.fillRect(0, 0, canvas.width, canvas.height);
-        
-        context.fillStyle = 'white';
-        context.font = '24px Arial';
-        context.textAlign = 'center';
-        context.fillText(planet.userData.name, canvas.width / 2, canvas.height / 2 + 8);
-        
-        const texture = new THREE.CanvasTexture(canvas);
-        const spriteMaterial = new THREE.SpriteMaterial({ map: texture });
-        const sprite = new THREE.Sprite(spriteMaterial);
-        sprite.scale.set(8, 2, 1);
-        sprite.position.set(0, planet.userData.radius + 3, 0);
-        
-        planet.add(sprite);
-        this.labels.push(sprite);
     }
 
     createStars() {
         const starsGeometry = new THREE.BufferGeometry();
         const starsMaterial = new THREE.PointsMaterial({
             color: 0xffffff,
-            size: 0.5,
+            size: 0.7,
             transparent: true,
-            opacity: 0.8
+            opacity: 0.9,
+            sizeAttenuation: true
         });
         
         const starsVertices = [];
-        for (let i = 0; i < 10000; i++) {
-            const x = (Math.random() - 0.5) * 2000;
-            const y = (Math.random() - 0.5) * 2000;
-            const z = (Math.random() - 0.5) * 2000;
+        const starsColors = [];
+        
+        for (let i = 0; i < 15000; i++) {
+            const x = (Math.random() - 0.5) * 3000;
+            const y = (Math.random() - 0.5) * 3000;
+            const z = (Math.random() - 0.5) * 3000;
             starsVertices.push(x, y, z);
+            
+            // Add some color variation to stars
+            const color = new THREE.Color();
+            const colorChoice = Math.random();
+            if (colorChoice < 0.7) {
+                color.setHSL(0.6, 0.2, 1); // Blueish white
+            } else if (colorChoice < 0.9) {
+                color.setHSL(0.1, 0.3, 1); // Yellowish white
+            } else {
+                color.setHSL(0, 0.3, 1); // Reddish white
+            }
+            starsColors.push(color.r, color.g, color.b);
         }
         
         starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starsVertices, 3));
+        starsGeometry.setAttribute('color', new THREE.Float32BufferAttribute(starsColors, 3));
+        starsMaterial.vertexColors = true;
+        
         const stars = new THREE.Points(starsGeometry, starsMaterial);
         this.scene.add(stars);
+        
+        // Add nebula effect
+        const nebulaGeometry = new THREE.PlaneGeometry(2000, 2000);
+        const nebulaMaterial = new THREE.MeshBasicMaterial({
+            color: 0x1a1a2e,
+            transparent: true,
+            opacity: 0.3
+        });
+        const nebula = new THREE.Mesh(nebulaGeometry, nebulaMaterial);
+        nebula.position.z = -500;
+        this.scene.add(nebula);
     }
 
     setupControls() {
