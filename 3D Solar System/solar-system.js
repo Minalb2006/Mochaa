@@ -527,7 +527,11 @@ class SolarSystem {
         document.getElementById('labelToggle').addEventListener('click', (e) => {
             this.showLabels = !this.showLabels;
             e.target.classList.toggle('active');
-            this.labels.forEach(label => label.visible = this.showLabels);
+            this.labels.forEach(label => {
+                if (label.style) {
+                    label.style.display = this.showLabels ? 'block' : 'none';
+                }
+            });
         });
         
         document.getElementById('pauseToggle').addEventListener('click', (e) => {
@@ -562,14 +566,35 @@ class SolarSystem {
         this.camera.position.z = cameraDistance * Math.cos(this.controls.targetRotationY) * Math.cos(this.controls.targetRotationX);
         this.camera.lookAt(0, 0, 0);
         
+        // Update labels
+        this.labels.forEach((label, index) => {
+            if (this.planets[index]) {
+                const planet = this.planets[index];
+                const vector = new THREE.Vector3();
+                planet.getWorldPosition(vector);
+                vector.project(this.camera);
+                
+                const x = (vector.x * 0.5 + 0.5) * window.innerWidth;
+                const y = (-vector.y * 0.5 + 0.5) * window.innerHeight;
+                
+                if (vector.z < 1) {
+                    label.style.left = x + 'px';
+                    label.style.top = y + 'px';
+                    label.style.display = 'block';
+                } else {
+                    label.style.display = 'none';
+                }
+            }
+        });
+        
         // Highlight selected planet
         this.planets.forEach(planet => {
             if (planet === this.selectedPlanet) {
                 planet.material.emissive = new THREE.Color(planet.userData.color);
                 planet.material.emissiveIntensity = 0.3;
             } else if (planet.userData.name !== 'Sun') {
-                planet.material.emissive = new THREE.Color(0x000000);
-                planet.material.emissiveIntensity = 0;
+                planet.material.emissive = new THREE.Color(planet.userData.emissiveColor || 0x000000);
+                planet.material.emissiveIntensity = planet.userData.emissiveIntensity || 0;
             }
         });
         
