@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mocha - My Creative Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Bubblegum+Sans&family=Fredoka:wght@300;400;500;600;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fredoka', 'Bubblegum Sans', 'Kalam', cursive, sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            font-weight: 400;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            font-family: 'Bubblegum Sans', 'Fredoka', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            font-size: 1rem;
+            color: #6b7280;
+            font-weight: 400;
+            font-family: 'Kalam', 'Fredoka', cursive;
+            letter-spacing: 0.3px;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Mocha Webpage - Featured Project */
+        .project-card.featured {
+            background: linear-gradient(135deg, #e0f2f1 0%, #4db6ac 100%);
+            border: none;
+            color: white;
+            order: -1;
+            grid-column: 1 / -1;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            box-shadow: 0 8px 32px rgba(0, 150, 136, 0.3);
+        }
+
+        .project-card.featured .project-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            font-family: 'Bubblegum Sans', 'Fredoka', cursive;
+            letter-spacing: 0.8px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card.featured .project-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-family: 'Kalam', 'Fredoka', cursive;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        .project-card.featured .project-icon {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .project-card.featured .project-button {
+            background: white;
+            color: #00897b;
+        }
+
+        .project-card.featured .project-button:hover {
+            background: #f3f4f6;
+        }
+
+        /* 3D Solar System - Enhanced Red Theme */
+        .project-card.solar-system {
+            background: linear-gradient(135deg, #ffebee 0%, #ef5350 100%);
+            box-shadow: 0 8px 32px rgba(211, 47, 47, 0.15), 0 4px 16px rgba(244, 67, 54, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.solar-system:hover {
+            box-shadow: 0 12px 48px rgba(211, 47, 47, 0.25), 0 8px 24px rgba(244, 67, 54, 0.2), 0 0 0 1px rgba(244, 67, 54, 0.1);
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .project-card.solar-system .project-icon {
+            background: linear-gradient(45deg, #f44336, #d32f2f);
+            color: white;
+            box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+        }
+
+        .project-card.solar-system .project-title {
+            color: #c62828;
+        }
+
+        .project-card.solar-system .project-description {
+            color: #b71c1c;
+        }
+
+        .project-card.solar-system .project-button {
+            background: linear-gradient(45deg, #d32f2f, #c62828);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+            font-weight: 600;
+            border-radius: 12px;
+        }
+
+        .project-card.solar-system .project-button:hover {
+            background: linear-gradient(45deg, #c62828, #b71c1c);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.4);
+        }
+
+        /* Bubble Game - Enhanced Cyan Theme */
+        .project-card.bubble-game {
+            background: linear-gradient(135deg, #e1f5fe 0%, #81d4fa 100%);
+            box-shadow: 0 8px 32px rgba(2, 136, 209, 0.15), 0 4px 16px rgba(41, 182, 246, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.bubble-game:hover {
+            box-shadow: 0 12px 48px rgba(2, 136, 209, 0.25), 0 8px 24px rgba(41, 182, 246, 0.2), 0 0 0 1px rgba(41, 182, 246, 0.1);
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .project-card.bubble-game .project-icon {
+            background: linear-gradient(45deg, #29b6f6, #0288d1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(41, 182, 246, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+        }
+
+        .project-card.bubble-game .project-title {
+            color: #0277bd;
+        }
+
+        .project-card.bubble-game .project-description {
+            color: #01579b;
+        }
+
+        .project-card.bubble-game .project-button {
+            background: linear-gradient(45deg, #0288d1, #0277bd);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(2, 136, 209, 0.3);
+            font-weight: 600;
+            border-radius: 12px;
+        }
+
+        .project-card.bubble-game .project-button:hover {
+            background: linear-gradient(45deg, #0277bd, #01579b);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(2, 136, 209, 0.4);
+        }
+
+        /* City Map - Enhanced Purple Theme */
+        .project-card.city-map {
+            background: linear-gradient(135deg, #f3e5f5 0%, #ce93d8 100%);
+            box-shadow: 0 8px 32px rgba(142, 36, 170, 0.15), 0 4px 16px rgba(171, 71, 188, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.city-map:hover {
+            box-shadow: 0 12px 48px rgba(142, 36, 170, 0.25), 0 8px 24px rgba(171, 71, 188, 0.2), 0 0 0 1px rgba(171, 71, 188, 0.1);
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .project-card.city-map .project-icon {
+            background: linear-gradient(45deg, #ab47bc, #8e24aa);
+            color: white;
+            box-shadow: 0 4px 15px rgba(171, 71, 188, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+        }
+
+        .project-card.city-map .project-title {
+            color: #7b1fa2;
+        }
+
+        .project-card.city-map .project-description {
+            color: #6a1b9a;
+        }
+
+        .project-card.city-map .project-button {
+            background: linear-gradient(45deg, #8e24aa, #7b1fa2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(142, 36, 170, 0.3);
+            font-weight: 600;
+            border-radius: 12px;
+        }
+
+        .project-card.city-map .project-button:hover {
+            background: linear-gradient(45deg, #7b1fa2, #6a1b9a);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(142, 36, 170, 0.4);
+        }
+
+        /* Geometry Dance - Enhanced Orange Theme */
+        .project-card.geometry-dance {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffb74d 100%);
+            box-shadow: 0 8px 32px rgba(245, 124, 0, 0.15), 0 4px 16px rgba(255, 152, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.geometry-dance:hover {
+            box-shadow: 0 12px 48px rgba(245, 124, 0, 0.25), 0 8px 24px rgba(255, 152, 0, 0.2), 0 0 0 1px rgba(255, 152, 0, 0.1);
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .project-card.geometry-dance .project-icon {
+            background: linear-gradient(45deg, #ff9800, #f57c00);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+        }
+
+        .project-card.geometry-dance .project-title {
+            color: #ef6c00;
+        }
+
+        .project-card.geometry-dance .project-description {
+            color: #e65100;
+        }
+
+        .project-card.geometry-dance .project-button {
+            background: linear-gradient(45deg, #f57c00, #ef6c00);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(245, 124, 0, 0.3);
+            font-weight: 600;
+            border-radius: 12px;
+        }
+
+        .project-card.geometry-dance .project-button:hover {
+            background: linear-gradient(45deg, #ef6c00, #e65100);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 124, 0, 0.4);
+        }
+
+        /* Girl - Enhanced Pink Theme */
+        .project-card.girl {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            box-shadow: 0 8px 32px rgba(194, 24, 91, 0.15), 0 4px 16px rgba(233, 30, 99, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.girl:hover {
+            box-shadow: 0 12px 48px rgba(194, 24, 91, 0.25), 0 8px 24px rgba(233, 30, 99, 0.2), 0 0 0 1px rgba(233, 30, 99, 0.1);
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .project-card.girl .project-icon {
+            background: linear-gradient(45deg, #e91e63, #c2185b);
+            color: white;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+        }
+
+        .project-card.girl .project-title {
+            color: #ad1457;
+        }
+
+        .project-card.girl .project-description {
+            color: #880e4f;
+        }
+
+        .project-card.girl .project-button {
+            background: linear-gradient(45deg, #c2185b, #ad1457);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(194, 24, 91, 0.3);
+            font-weight: 600;
+            border-radius: 12px;
+        }
+
+        .project-card.girl .project-button:hover {
+            background: linear-gradient(45deg, #ad1457, #880e4f);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(194, 24, 91, 0.4);
+        }
+
+        /* Kaleidoscope - Enhanced Green Theme */
+        .project-card.kaleidoscope {
+            background: linear-gradient(135deg, #e8f5e8 0%, #66bb6a 100%);
+            box-shadow: 0 8px 32px rgba(56, 142, 60, 0.15), 0 4px 16px rgba(67, 160, 71, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.kaleidoscope:hover {
+            box-shadow: 0 12px 48px rgba(56, 142, 60, 0.25), 0 8px 24px rgba(67, 160, 71, 0.2), 0 0 0 1px rgba(67, 160, 71, 0.1);
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .project-card.kaleidoscope .project-icon {
+            background: linear-gradient(45deg, #43a047, #388e3c);
+            color: white;
+            box-shadow: 0 4px 15px rgba(67, 160, 71, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+        }
+
+        .project-card.kaleidoscope .project-title {
+            color: #2e7d32;
+        }
+
+        .project-card.kaleidoscope .project-description {
+            color: #1b5e20;
+        }
+
+        .project-card.kaleidoscope .project-button {
+            background: linear-gradient(45deg, #388e3c, #2e7d32);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(56, 142, 60, 0.3);
+            font-weight: 600;
+            border-radius: 12px;
+        }
+
+        .project-card.kaleidoscope .project-button:hover {
+            background: linear-gradient(45deg, #2e7d32, #1b5e20);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(56, 142, 60, 0.4);
+        }
+
+        /* Mocha Practice - Enhanced Yellow Theme */
+        .project-card.mocha-practice {
+            background: linear-gradient(135deg, #fffde7 0%, #ffeb3b 100%);
+            box-shadow: 0 8px 32px rgba(255, 235, 59, 0.15), 0 4px 16px rgba(255, 193, 7, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.mocha-practice:hover {
+            box-shadow: 0 12px 48px rgba(255, 235, 59, 0.25), 0 8px 24px rgba(255, 193, 7, 0.2), 0 0 0 1px rgba(255, 193, 7, 0.1);
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .project-card.mocha-practice .project-icon {
+            background: linear-gradient(45deg, #ffeb3b, #ffc107);
+            color: #333;
+            box-shadow: 0 4px 15px rgba(255, 235, 59, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+        }
+
+        .project-card.mocha-practice .project-title {
+            color: #f57f17;
+        }
+
+        .project-card.mocha-practice .project-description {
+            color: #f9a825;
+        }
+
+        .project-card.mocha-practice .project-button {
+            background: linear-gradient(45deg, #ffc107, #ffeb3b);
+            color: #333;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 235, 59, 0.3);
+            font-weight: 600;
+            border-radius: 12px;
+        }
+
+        .project-card.mocha-practice .project-button:hover {
+            background: linear-gradient(45deg, #ffeb3b, #fff176);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 235, 59, 0.4);
+        }
+
+        /* Mocha Webpage - Enhanced Teal Theme */
+        .project-card.mocha-webpage {
+            background: linear-gradient(135deg, #e0f2f1 0%, #4db6ac 100%);
+            box-shadow: 0 8px 32px rgba(0, 121, 107, 0.15), 0 4px 16px rgba(0, 137, 123, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.mocha-webpage:hover {
+            box-shadow: 0 12px 48px rgba(0, 121, 107, 0.25), 0 8px 24px rgba(0, 137, 123, 0.2), 0 0 0 1px rgba(0, 137, 123, 0.1);
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .project-card.mocha-webpage .project-icon {
+            background: linear-gradient(45deg, #00897b, #00796b);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 137, 123, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+        }
+
+        .project-card.mocha-webpage .project-title {
+            color: #00695c;
+        }
+
+        .project-card.mocha-webpage .project-description {
+            color: #004d40;
+        }
+
+        .project-card.mocha-webpage .project-button {
+            background: linear-gradient(45deg, #00796b, #00695c);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 121, 107, 0.3);
+            font-weight: 600;
+            border-radius: 12px;
+        }
+
+        .project-card.mocha-webpage .project-button:hover {
+            background: linear-gradient(45deg, #00695c, #004d40);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 121, 107, 0.4);
+        }
+
+        /* Neon Cloth Physics - Enhanced Deep Purple Theme */
+        .project-card.neon-cloth {
+            background: linear-gradient(135deg, #f3e5f5 0%, #7e57c2 100%);
+            box-shadow: 0 8px 32px rgba(81, 45, 168, 0.15), 0 4px 16px rgba(94, 53, 177, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.neon-cloth:hover {
+            box-shadow: 0 12px 48px rgba(81, 45, 168, 0.25), 0 8px 24px rgba(94, 53, 177, 0.2), 0 0 0 1px rgba(94, 53, 177, 0.1);
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .project-card.neon-cloth .project-icon {
+            background: linear-gradient(45deg, #5e35b1, #512da8);
+            color: white;
+            box-shadow: 0 4px 15px rgba(94, 53, 177, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+        }
+
+        .project-card.neon-cloth .project-title {
+            color: #4527a0;
+        }
+
+        .project-card.neon-cloth .project-description {
+            color: #311b92;
+        }
+
+        .project-card.neon-cloth .project-button {
+            background: linear-gradient(45deg, #512da8, #4527a0);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(81, 45, 168, 0.3);
+            font-weight: 600;
+            border-radius: 12px;
+        }
+
+        .project-card.neon-cloth .project-button:hover {
+            background: linear-gradient(45deg, #4527a0, #311b92);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(81, 45, 168, 0.4);
+        }
+
+        /* Primordial Soup - Enhanced Indigo Theme */
+        .project-card.primordial-soup {
+            background: linear-gradient(135deg, #e8eaf6 0%, #5c6bc0 100%);
+            box-shadow: 0 8px 32px rgba(48, 63, 159, 0.15), 0 4px 16px rgba(57, 73, 171, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.primordial-soup:hover {
+            box-shadow: 0 12px 48px rgba(48, 63, 159, 0.25), 0 8px 24px rgba(57, 73, 171, 0.2), 0 0 0 1px rgba(57, 73, 171, 0.1);
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .project-card.primordial-soup .project-icon {
+            background: linear-gradient(45deg, #3949ab, #303f9f);
+            color: white;
+            box-shadow: 0 4px 15px rgba(57, 73, 171, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+        }
+
+        .project-card.primordial-soup .project-title {
+            color: #283593;
+        }
+
+        .project-card.primordial-soup .project-description {
+            color: #1a237e;
+        }
+
+        .project-card.primordial-soup .project-button {
+            background: linear-gradient(45deg, #303f9f, #283593);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(48, 63, 159, 0.3);
+            font-weight: 600;
+            border-radius: 12px;
+        }
+
+        .project-card.primordial-soup .project-button:hover {
+            background: linear-gradient(45deg, #283593, #1a237e);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(48, 63, 159, 0.4);
+        }
+
+        /* Space Robot - Enhanced Brown Theme */
+        .project-card.space-robot {
+            background: linear-gradient(135deg, #efebe9 0%, #a1887f 100%);
+            box-shadow: 0 8px 32px rgba(109, 76, 65, 0.15), 0 4px 16px rgba(121, 85, 72, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card.space-robot:hover {
+            box-shadow: 0 12px 48px rgba(109, 76, 65, 0.25), 0 8px 24px rgba(121, 85, 72, 0.2), 0 0 0 1px rgba(121, 85, 72, 0.1);
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .project-card.space-robot .project-icon {
+            background: linear-gradient(45deg, #795548, #6d4c41);
+            color: white;
+            box-shadow: 0 4px 15px rgba(121, 85, 72, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+        }
+
+        .project-card.space-robot .project-title {
+            color: #5d4037;
+        }
+
+        .project-card.space-robot .project-description {
+            color: #4e342e;
+        }
+
+        .project-card.space-robot .project-button {
+            background: linear-gradient(45deg, #6d4c41, #5d4037);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(109, 76, 65, 0.3);
+            font-weight: 600;
+            border-radius: 12px;
+        }
+
+        .project-card.space-robot .project-button:hover {
+            background: linear-gradient(45deg, #5d4037, #4e342e);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(109, 76, 65, 0.4);
+        }
+
+        .project-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 32px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            border-color: #d1d5db;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .project-icon {
+            width: 48px;
+            height: 48px;
+            background: transparent;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: #374151;
+        }
+
+        .project-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            font-weight: 600;
+            letter-spacing: 0.6px;
+            font-family: 'Bubblegum Sans', 'Fredoka', cursive;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-description {
+            color: #6b7280;
+            margin-bottom: 24px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            font-family: 'Kalam', 'Fredoka', cursive;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+        }
+
+        .project-button {
+            background: #1a1a1a;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Fredoka', 'Bubblegum Sans', cursive;
+            letter-spacing: 0.4px;
+            border-radius: 20px;
+        }
+
+        .project-button:hover {
+            background: #374151;
+            transform: translateY(-1px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+            border-top: 1px solid #e5e7eb;
+            background: #ffffff;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            font-family: 'Bubblegum Sans', 'Fredoka', cursive;
+            letter-spacing: 0.8px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer p {
+            color: #6b7280;
+            font-size: 0.9rem;
+            font-family: 'Kalam', 'Fredoka', cursive;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .project-card {
+                padding: 24px;
+            }
+
+            .project-card.featured {
+                padding: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Disable right-click context menu
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Disable text selection
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Disable drag and drop 
+        document.addEventListener('dragstart', function(e) { 
+            e.preventDefault(); 
+            return false;  
+        }); 
+
+        document.addEventListener('drop', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Disable copy, cut, paste
+        document.addEventListener('copy', function(e) {
+            e.preventDefault(); 
+            return false;
+        });
+
+        document.addEventListener('cut', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        document.addEventListener('paste', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Block developer tools keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // F12
+            if (e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+Shift+I
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+Shift+J
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+U (View Source)
+            if (e.ctrlKey && e.keyCode === 85) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+Shift+C
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 67) {
+                e.preventDefault();
+                return false;
+            }
+            // F11 (Fullscreen)
+            if (e.keyCode === 122) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Detect and block developer tools
+        var devtools = {
+            open: false,
+            orientation: null
+        };
+        
+        setInterval(function() {
+            if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200) {
+                if (!devtools.open) {
+                    devtools.open = true;
+                    document.body.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif; font-size: 24px; color: #333; background: #f0f0f0;">Developer tools are disabled on this page.</div>';
+                }
+            } else {
+                devtools.open = false;
+            }
+        }, 500);
+
+        // Disable console
+        console.log = function() {};
+        console.warn = function() {};
+        console.error = function() {};
+        console.info = function() {};
+        console.debug = function() {};
+    </script>
+    <div class="header">
+        <h1>Mocha</h1>
+        <p>Explore my collection of creative web experiments and applications</p>
+    </div>
+
+    <div class="main-content">
+        <div class="projects-grid" id="projectsContainer">
+            <!-- Projects will be dynamically added here -->
+        </div>
+    </div>
+
+    <div class="footer">
+        <h3>Mocha</h3>
+        <p>Creative Web Development Projects & Experiments</p>
+    </div>
+
+    <script>
+        const projects = [
+            {
+                name: "Mocha Webpage",
+                icon: '<svg viewBox="0 0 24 24"><path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="0.5" opacity="0.5"/></svg>',
+                description: "Comprehensive web development tutorials and examples with interactive coding exercises and modern web technologies.",
+                path: "Mocha Webpage/index.html",
+                class: "mocha-webpage",
+                featured: true
+            },
+            {
+                name: "3D Solar System",
+                icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3,3"/></svg>',
+                description: "Interactive 3D solar system with realistic planetary orbits, real astronomical data, and immersive space exploration.",
+                path: "3D Solar System/index.html",
+                class: "solar-system"
+            },
+            {
+                name: "Bubble Game",
+                icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>',
+                description: "Interactive bubble popping game with physics.",
+                path: "Bubble Game/index.html",
+                class: "bubble-game"
+            },
+            {
+                name: "City Map",
+                icon: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>',
+                description: "Interactive city map visualization.",
+                path: "City Map/City Map.html",
+                class: "city-map"
+            },
+            {
+                name: "Geometry Dance",
+                icon: '<svg viewBox="0 0 24 24"><polygon points="12,2 22,8.5 22,15.5 12,22 2,15.5 2,8.5"/></svg>',
+                description: "Geometric shapes dancing in patterns.",
+                path: "Geometry Dance/Colour.html",
+                class: "geometry-dance"
+            },
+            {
+                name: "Girl",
+                icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.97 0-9 4.03-9 9h18c0-4.97-4.03-9-9-9z"/></svg>',
+                description: "Character design and animation.",
+                path: "Girl/girl.html",
+                class: "girl"
+            },
+            {
+                name: "Kaleidoscope",
+                icon: '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>',
+                description: "Mesmerizing kaleidoscope patterns.",
+                path: "Kaleidoscope/Kaleidoscope.html",
+                class: "kaleidoscope"
+            },
+            {
+                name: "Mocha Practice",
+                icon: '<svg viewBox="0 0 24 24"><path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="0.5" opacity="0.5"/></svg>',
+                description: "Web technology practice exercises.",
+                path: "Mocha Practice/Mocha.html",
+                class: "mocha-practice"
+            },
+            {
+                name: "Neon Cloth Physics",
+                icon: '<svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z M8 10h8v4H8z"/></svg>',
+                description: "Cloth physics simulation.",
+                path: "Noen Cloth Physics/Neon Coth Physics.html",
+                class: "neon-cloth"
+            },
+            {
+                name: "Primordial Soup",
+                icon: '<svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><circle cx="12" cy="16" r="3"/></svg>',
+                description: "Evolution simulation project.",
+                path: "Primordial Soup/Primordial Soup.html",
+                class: "primordial-soup"
+            },
+            {
+                name: "Space Robot",
+                icon: '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>',
+                description: "Space robot adventure game.",
+                path: "Space Robot/Space Robot.html",
+                class: "space-robot"
+            }
+        ];
+
+        function createProjectCard(project, index) {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            
+            // Add featured class if project is featured
+            if (project.featured) {
+                card.classList.add('featured');
+            }
+            
+            // Add project-specific class if available
+            if (project.class) {
+                card.classList.add(project.class);
+            }
+            
+            const icon = document.createElement('div');
+            icon.className = 'project-icon';
+            icon.innerHTML = project.icon;
+            
+            const title = document.createElement('h3');
+            title.className = 'project-title';
+            title.textContent = project.name;
+            
+            const description = document.createElement('p');
+            description.className = 'project-description';
+            description.textContent = project.description;
+            
+            const button = document.createElement('a');
+            button.className = 'project-button';
+            button.textContent = project.isApp ? 'Open App' : 'View Project';
+            button.href = project.path;
+            button.target = '_blank';
+            button.rel = 'noopener noreferrer';
+            
+            card.appendChild(icon);
+            card.appendChild(title);
+            card.appendChild(description);
+            card.appendChild(button);
+            
+            return card;
+        }
+
+        function initializeProjects() {
+            const container = document.getElementById('projectsContainer');
+            
+            projects.forEach((project, index) => {
+                const card = createProjectCard(project, index);
+                container.appendChild(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeProjects);
+    </script>
+</body>
+</html>
